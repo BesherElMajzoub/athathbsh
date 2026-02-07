@@ -8,12 +8,12 @@ class AreaController extends Controller
 {
     public function index(): View
     {
-        $areas = config('areas.canonicals');
+        $areas = config('areas');
         $business = config('business');
 
         $seo = [
-            'title' => 'مناطق الخدمة في الرياض | شراء أثاث مستعمل',
-            'description' => 'نغطي جميع مناطق الرياض: شمال وجنوب وشرق وغرب. شراء أثاث مستعمل مع تقييم مجاني ونقل ودفع فوري.',
+            'title' => 'مناطق الخدمة في جدة | شراء أثاث مستعمل',
+            'description' => 'نغطي جميع مناطق جدة: شمال وجنوب وشرق وغرب. شراء أثاث مستعمل مع تقييم مجاني ونقل ودفع فوري.',
         ];
 
         return view('pages.areas.index', compact('areas', 'business', 'seo'));
@@ -21,7 +21,7 @@ class AreaController extends Controller
 
     public function show(string $areaSlug): View
     {
-        $areas = config('areas.canonicals');
+        $areas = config('areas');
         $area = $areas[$areaSlug] ?? null;
 
         if (!$area) {
@@ -30,10 +30,13 @@ class AreaController extends Controller
 
         $business = config('business');
         $site = config('site');
+        
+        $metaTitle = $area['meta']['title'] ?? "شراء أثاث مستعمل {$area['name']}";
+        $metaDesc = $area['meta']['description'] ?? ($area['description'] ?? '');
 
         $seo = [
-            'title' => $area['meta']['title'] ?? "شراء أثاث مستعمل {$area['name']}",
-            'description' => $area['meta']['description'] ?? $area['intro'],
+            'title' => $metaTitle,
+            'description' => $metaDesc,
             'canonical' => url()->current(),
         ];
 

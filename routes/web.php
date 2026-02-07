@@ -21,22 +21,27 @@ Route::get('/services', [ServiceController::class, 'index'])->name('services.ind
 Route::get('/services/buy-used-furniture', [ServiceController::class, 'show'])->name('services.furniture')->defaults('serviceSlug', 'buy-used-furniture');
 Route::get('/services/buy-air-conditioners', [ServiceController::class, 'show'])->name('services.ac')->defaults('serviceSlug', 'buy-air-conditioners');
 Route::get('/services/buy-restaurant-equipment', [ServiceController::class, 'show'])->name('services.restaurant')->defaults('serviceSlug', 'buy-restaurant-equipment');
-Route::get('/services/buy-used-kitchens', [ServiceController::class, 'show'])->name('services.kitchens')->defaults('serviceSlug', 'buy-used-kitchens');
+Route::get('/services/buy-cafe-equipment', [ServiceController::class, 'show'])->name('services.cafe')->defaults('serviceSlug', 'buy-cafe-equipment');
 Route::get('/services/buy-used-appliances', [ServiceController::class, 'show'])->name('services.appliances')->defaults('serviceSlug', 'buy-used-appliances');
+Route::get('/services/buy-hotel-furniture', [ServiceController::class, 'show'])->name('services.hotel')->defaults('serviceSlug', 'buy-hotel-furniture');
+Route::get('/services/buy-warehouse-clearance', [ServiceController::class, 'show'])->name('services.warehouse')->defaults('serviceSlug', 'buy-warehouse-clearance');
 
 // About & Contact
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'store'])->middleware('throttle:10,1')->name('contact.store');
 
+// Location
+Route::get('/location', [PageController::class, 'location'])->name('location');
+
 // FAQ
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
-// Riyadh Areas
-Route::get('/riyadh/north', [AreaController::class, 'show'])->name('areas.north')->defaults('areaSlug', 'north');
-Route::get('/riyadh/south', [AreaController::class, 'show'])->name('areas.south')->defaults('areaSlug', 'south');
-Route::get('/riyadh/east', [AreaController::class, 'show'])->name('areas.east')->defaults('areaSlug', 'east');
-Route::get('/riyadh/west', [AreaController::class, 'show'])->name('areas.west')->defaults('areaSlug', 'west');
+// Jeddah Areas
+Route::get('/jeddah/north', [AreaController::class, 'show'])->name('areas.north')->defaults('areaSlug', 'north');
+Route::get('/jeddah/south', [AreaController::class, 'show'])->name('areas.south')->defaults('areaSlug', 'south');
+Route::get('/jeddah/east', [AreaController::class, 'show'])->name('areas.east')->defaults('areaSlug', 'east');
+Route::get('/jeddah/west', [AreaController::class, 'show'])->name('areas.west')->defaults('areaSlug', 'west');
 
 // Tracking Routes
 Route::get('/t/whatsapp', [TrackingController::class, 'whatsapp'])->name('track.whatsapp');

@@ -10,16 +10,16 @@
     <section class="hero hero-page">
         <div class="container">
             <h1>من نحن</h1>
-            <p class="lead">خبرة {{ $business['years_experience'] ?? '10' }}+ سنة في شراء الأثاث المستعمل في الرياض</p>
+            <p class="lead">خبرة {{ $business['years_experience'] ?? '10' }}+ سنة في شراء الأثاث المستعمل في جدة</p>
         </div>
     </section>
 
     <section>
         <div class="container">
             <div class="about-content">
-                <h2>خدماتنا في الرياض</h2>
+                <h2>خدماتنا في جدة</h2>
                 <p>
-                    نحن متخصصون في شراء الأثاث المستعمل في الرياض منذ أكثر من {{ $business['years_experience'] ?? '10' }}
+                    نحن متخصصون في شراء الأثاث المستعمل في جدة منذ أكثر من {{ $business['years_experience'] ?? '10' }}
                     سنوات.
                     نقدم خدمة شراء الأثاث والمكيفات والأجهزة الكهربائية المستعملة مع تقييم مجاني ونقل وتحميل ودفع فوري.
                 </p>
@@ -27,20 +27,20 @@
                 <h3>لماذا تختارنا؟</h3>
                 <ul class="check-list">
                     <li>خبرة {{ $business['years_experience'] ?? '10' }}+ سنة في السوق السعودي</li>
-                    <li>تغطية شاملة لجميع مناطق الرياض</li>
+                    <li>تغطية شاملة لجميع مناطق جدة</li>
                     <li>تقييم مجاني ومعاينة في موقعك</li>
                     <li>أسعار عادلة وشفافة</li>
                     <li>فك ونقل وتحميل بعد الاتفاق</li>
                     <li>دفع فوري بعد الاتفاق</li>
                 </ul>
 
-                <h3>نشتري في الرياض فقط</h3>
+                <h3>نشتري في جدة فقط</h3>
                 <p>
-                    نركز على خدمة عملائنا في الرياض بأعلى جودة. نغطي جميع مناطق الرياض:
-                    <a href="{{ route('areas.north') }}">شمال الرياض</a>،
-                    <a href="{{ route('areas.south') }}">جنوب الرياض</a>،
-                    <a href="{{ route('areas.east') }}">شرق الرياض</a>،
-                    و<a href="{{ route('areas.west') }}">غرب الرياض</a>.
+                    نركز على خدمة عملائنا في جدة بأعلى جودة. نغطي جميع مناطق جدة:
+                    <a href="{{ route('areas.north') }}">شمال جدة</a>،
+                    <a href="{{ route('areas.south') }}">جنوب جدة</a>،
+                    <a href="{{ route('areas.east') }}">شرق جدة</a>،
+                    و<a href="{{ route('areas.west') }}">غرب جدة</a>.
                 </p>
             </div>
         </div>

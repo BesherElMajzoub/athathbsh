@@ -39,25 +39,75 @@
         </section>
     @endif
 
-    @foreach ($service['sections'] ?? [] as $section)
-        <section class="{{ $loop->odd ? '' : 'alt' }}">
+    @if (!empty($service['subcategories']))
+        <section class="alt">
             <div class="container">
-                <h2>{{ $section['title'] }}</h2>
-                @if (!empty($section['paragraphs']))
-                    @foreach ($section['paragraphs'] as $paragraph)
-                        <p>{{ $paragraph }}</p>
+                <h2>ماذا نشتري؟</h2>
+                <div class="services-grid">
+                    @foreach ($service['subcategories'] as $key => $sub)
+                        <div class="service-card">
+                            <h3>{{ $sub['name'] }}</h3>
+                            @if (!empty($sub['items']))
+                                <ul class="check-list">
+                                    @foreach ($sub['items'] as $item)
+                                        <li>{{ $item }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
                     @endforeach
-                @endif
-                @if (!empty($section['bullets']))
-                    <ul class="check-list">
-                        @foreach ($section['bullets'] as $bullet)
-                            <li>{{ $bullet }}</li>
-                        @endforeach
-                    </ul>
-                @endif
+                </div>
             </div>
         </section>
-    @endforeach
+    @endif
+
+    @if (!empty($service['items']))
+        <section class="alt">
+            <div class="container">
+                <h2>أنواع {{ $service['name'] }} التي نشتريها</h2>
+                <div class="chips">
+                    @foreach ($service['items'] as $item)
+                        <span class="chip">{{ $item }}</span>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if (!empty($service['additional_services']))
+        <section>
+            <div class="container">
+                <h2>خدمات إضافية</h2>
+                <ul class="check-list"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    @foreach ($service['additional_services'] as $serviceItem)
+                        <li>{{ $serviceItem }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </section>
+    @endif
+
+    @if (!empty($service['images']))
+        <section>
+            <div class="container">
+                <h2>صور من أعمالنا</h2>
+                <div class="image-grid"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    @foreach ($service['images'] as $image)
+                        <div class="image-item">
+                            <img src="{{ asset('assets/img/' . $image['src']) }}" alt="{{ $image['alt'] }}" loading="lazy"
+                                width="400" height="300"
+                                style="width: 100%; height: auto; border-radius: 8px; object-fit: cover;">
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
+    {{-- KEYWORDS_PLACEHOLDER_START --}}
+    {{-- KEYWORDS_PLACEHOLDER_END --}}
 
     @if (!empty($service['faqs']))
         <section class="alt">
@@ -87,8 +137,10 @@
                         'buy-used-furniture' => 'services.furniture',
                         'buy-air-conditioners' => 'services.ac',
                         'buy-restaurant-equipment' => 'services.restaurant',
-                        'buy-used-kitchens' => 'services.kitchens',
+                        'buy-cafe-equipment' => 'services.cafe',
                         'buy-used-appliances' => 'services.appliances',
+                        'buy-hotel-furniture' => 'services.hotel',
+                        'buy-warehouse-clearance' => 'services.warehouse',
                     ];
                 @endphp
                 <div class="related-services">

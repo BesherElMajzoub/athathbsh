@@ -9,8 +9,8 @@
 @section('content')
     <section class="hero hero-page">
         <div class="container">
-            <h1>مناطق الخدمة في الرياض</h1>
-            <p class="lead">نغطي جميع مناطق الرياض: شمال وجنوب وشرق وغرب. نصل لموقعك للمعاينة والشراء.</p>
+            <h1>مناطق الخدمة في جدة</h1>
+            <p class="lead">نغطي جميع أحياء جدة: شمال وجنوب وشرق وغرب. نصل لموقعك للمعاينة والشراء.</p>
         </div>
     </section>
 
@@ -20,7 +20,7 @@
                 @foreach ($areas as $slug => $area)
                     <a href="{{ route('areas.' . $slug) }}" class="area-card">
                         <h2>{{ $area['name'] }}</h2>
-                        <p>{{ \Illuminate\Support\Str::limit($area['intro'], 120) }}</p>
+                        <p>{{ \Illuminate\Support\Str::limit($area['description'], 120) }}</p>
                         <span class="card-link">اعرف المزيد ←</span>
                     </a>
                 @endforeach
@@ -32,7 +32,7 @@
         <div class="container">
             <div class="callout callout-cta">
                 <h2>تواصل معنا الآن</h2>
-                <p>أينما كنت في الرياض، نصل إليك للمعاينة والشراء</p>
+                <p>أينما كنت في جدة، نصل إليك للمعاينة والشراء</p>
                 <x-cta size="lg" />
             </div>
         </div>

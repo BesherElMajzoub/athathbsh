@@ -12,8 +12,8 @@ class PageController extends Controller
         $site = config('site');
 
         $seo = [
-            'title' => 'من نحن | شراء أثاث مستعمل بالرياض',
-            'description' => 'نحن متخصصون في شراء الأثاث المستعمل في الرياض منذ أكثر من ' . ($business['years_experience'] ?? '10') . ' سنوات. نوفر تقييم مجاني ونقل ودفع فوري.',
+            'title' => 'من نحن | شراء أثاث مستعمل بجدة',
+            'description' => 'نحن متخصصون في شراء الأثاث المستعمل في جدة منذ أكثر من ' . ($business['years_experience'] ?? '10') . ' سنوات. نوفر تقييم مجاني ونقل ودفع فوري.',
         ];
 
         return view('pages.about', compact('business', 'site', 'seo'));
@@ -25,8 +25,8 @@ class PageController extends Controller
         $site = config('site');
 
         $seo = [
-            'title' => 'موقعنا | شراء أثاث مستعمل بالرياض',
-            'description' => 'موقعنا في الرياض. نغطي جميع مناطق الرياض لشراء الأثاث المستعمل.',
+            'title' => 'موقعنا في جدة | شراء أثاث مستعمل',
+            'description' => 'موقعنا في جدة. نغطي جميع أحياء جدة لشراء الأثاث المستعمل مع خدمة نقل مجانية.',
         ];
 
         return view('pages.location', compact('business', 'site', 'seo'));

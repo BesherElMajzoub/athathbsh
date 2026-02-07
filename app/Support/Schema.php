@@ -111,6 +111,23 @@ class Schema
     }
 
     /**
+     * @return array<string, mixed>
+     */
+    public static function videoObject(string $name, string $description, string $uploadDate, string $thumbnailUrl, string $contentUrl): array
+    {
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'VideoObject',
+            'name' => $name,
+            'description' => $description,
+            'thumbnailUrl' => $thumbnailUrl,
+            'uploadDate' => $uploadDate,
+            'contentUrl' => $contentUrl,
+            'embedUrl' => str_replace('watch?v=', 'embed/', $contentUrl),
+        ];
+    }
+
+    /**
      * @param  array<string, mixed>  $business
      */
     private static function telephoneE164(array $business): string

@@ -4,6 +4,17 @@
     <script type="application/ld+json">
         {!! json_encode(\App\Support\Schema::localBusiness(config('business')), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
     </script>
+    @if (config('site.youtube_url'))
+        <script type="application/ld+json">
+        {!! json_encode(\App\Support\Schema::videoObject(
+            'شراء أثاث مستعمل في جدة - ' . config('business.brand_name'),
+            'نشتري الأثاث المستعمل في جدة بأفضل الأسعار مع خدمة النقل والفك المجاني.',
+            date('Y-m-d'),
+            asset('assets/img/video-thumb.jpg'),
+            config('site.youtube_url')
+        ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+    </script>
+    @endif
 @endpush
 
 @section('content')
@@ -41,6 +52,8 @@
         </div>
     </section>
 
+    @include('partials.video-section')
+
     <section>
         <div class="container">
             <h2>خدماتنا</h2>
@@ -62,7 +75,7 @@
             </ol>
 
             <div class="callout">
-                <div class="callout-title">تبحث عن "أرقام شراء الأثاث المستعمل بالرياض"؟</div>
+                <div class="callout-title">تبحث عن "أرقام شراء الأثاث المستعمل بجدة"؟</div>
                 <div class="callout-text">اضغط اتصال أو واتساب، وراح نرد عليك بسرعة ونرتب المعاينة.</div>
                 <x-cta size="sm" />
             </div>
@@ -76,10 +89,10 @@
                 نغطي {{ $business['city'] }} (شمال/جنوب/شرق/غرب) ونصل لموقعك للمعاينة والشراء.
             </p>
             <div class="chips">
-                <a class="chip" href="{{ route('areas.north') }}">شمال الرياض</a>
-                <a class="chip" href="{{ route('areas.south') }}">جنوب الرياض</a>
-                <a class="chip" href="{{ route('areas.east') }}">شرق الرياض</a>
-                <a class="chip" href="{{ route('areas.west') }}">غرب الرياض</a>
+                <a class="chip" href="{{ route('areas.north') }}">شمال جدة</a>
+                <a class="chip" href="{{ route('areas.south') }}">جنوب جدة</a>
+                <a class="chip" href="{{ route('areas.east') }}">شرق جدة</a>
+                <a class="chip" href="{{ route('areas.west') }}">غرب جدة</a>
             </div>
         </div>
     </section>

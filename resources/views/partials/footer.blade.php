@@ -17,19 +17,21 @@
                 <ul>
                     <li><a href="{{ route('services.furniture') }}">شراء أثاث مستعمل</a></li>
                     <li><a href="{{ route('services.ac') }}">شراء مكيفات مستعملة</a></li>
-                    <li><a href="{{ route('services.appliances') }}">شراء أجهزة كهربائية</a></li>
-                    <li><a href="{{ route('services.kitchens') }}">شراء مطابخ مستعملة</a></li>
                     <li><a href="{{ route('services.restaurant') }}">شراء معدات مطاعم</a></li>
+                    <li><a href="{{ route('services.cafe') }}">شراء معدات كافيهات</a></li>
+                    <li><a href="{{ route('services.appliances') }}">شراء أجهزة كهربائية</a></li>
+                    <li><a href="{{ route('services.hotel') }}">شراء أثاث فنادق</a></li>
+                    <li><a href="{{ route('services.warehouse') }}">تفريغ مستودعات</a></li>
                 </ul>
             </div>
 
             <div class="footer-links">
                 <h3>المناطق</h3>
                 <ul>
-                    <li><a href="{{ route('areas.north') }}">شمال الرياض</a></li>
-                    <li><a href="{{ route('areas.south') }}">جنوب الرياض</a></li>
-                    <li><a href="{{ route('areas.east') }}">شرق الرياض</a></li>
-                    <li><a href="{{ route('areas.west') }}">غرب الرياض</a></li>
+                    <li><a href="{{ route('areas.north') }}">شمال جدة</a></li>
+                    <li><a href="{{ route('areas.south') }}">جنوب جدة</a></li>
+                    <li><a href="{{ route('areas.east') }}">شرق جدة</a></li>
+                    <li><a href="{{ route('areas.west') }}">غرب جدة</a></li>
                 </ul>
             </div>
 
@@ -39,6 +41,7 @@
                     <li><a href="{{ route('home') }}">الرئيسية</a></li>
                     <li><a href="{{ route('about') }}">من نحن</a></li>
                     <li><a href="{{ route('faq') }}">الأسئلة الشائعة</a></li>
+                    <li><a href="{{ route('location') }}">موقعنا في جدة</a></li>
                     <li><a href="{{ route('contact.show') }}">تواصل معنا</a></li>
                 </ul>
             </div>
@@ -59,7 +62,8 @@
                         <path
                             d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                     </svg>
-                    <span>{{ $business['address_ar'] }}</span>
+                    <a href="{{ route('location') }}"
+                        style="color: rgba(255,255,255,0.7); text-decoration: none;">{{ $business['address_ar'] }}</a>
                 </div>
                 <div class="contact-item">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"

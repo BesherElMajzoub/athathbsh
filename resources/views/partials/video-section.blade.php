@@ -1,5 +1,9 @@
 @php
-    $youtubeUrl = config('site.youtube_url');
+    $youtubeUrl = 'https://www.youtube.com/watch?v=-P73XwPrGGw';
+
+    // تحويل أي رابط يوتيوب إلى embed
+    parse_str(parse_url($youtubeUrl, PHP_URL_QUERY), $ytParams);
+    $videoId = $ytParams['v'] ?? null;
 @endphp
 
 <section class="video-section">
@@ -10,12 +14,12 @@
         </p>
 
         <div class="video-card">
-            @if ($youtubeUrl)
+            @if ($videoId)
                 <div class="video-embed">
-                    <iframe width="100%" height="500" src="{{ str_replace('watch?v=', 'embed/', $youtubeUrl) }}"
-                        title="فيديو شراء أثاث مستعمل جدة" frameborder="0"
+                    <iframe width="100%" height="500" src="https://www.youtube.com/embed/{{ $videoId }}"
+                        title="فيديو شراء أثاث مستعمل جدة" frameborder="0" loading="lazy"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen loading="lazy">
+                        allowfullscreen>
                     </iframe>
                 </div>
             @else
@@ -35,12 +39,8 @@
             <p>
                 نحن متخصصون في شراء الأثاث والمعدات المستعملة في جدة منذ أكثر من
                 {{ config('business.years_experience', '10') }} سنوات.
-                عندما تتصل بنا على {{ config('site.phone_display') }}، نصل إلى موقعك في جدة لمعاينة الأثاث أو المعدات
-                بشكل مجاني.
-                نقوم بتقييم عادل وشفاف، ثم نتفق على السعر. بعد الاتفاق، نقوم بفك وتحميل ونقل جميع القطع بدون أي تكلفة
-                إضافية.
-                الدفع فوري ونقداً بعد الانتهاء من التحميل. خدمتنا تشمل جميع أنواع الأثاث المنزلي والمكتبي، المكيفات،
-                معدات المطاعم والكافيهات، والأجهزة الكهربائية في كافة أنحاء جدة.
+                نصل إلى موقعك للمعاينة المجانية، تقييم عادل، فك ونقل بدون أي تكلفة،
+                والدفع فوري بعد التحميل.
             </p>
         </div>
 
@@ -49,5 +49,3 @@
         </div>
     </div>
 </section>
-
-{{-- TODO: Add YouTube URL to .env as SITE_YOUTUBE_URL=https://youtube.com/watch?v=XXXXX --}}

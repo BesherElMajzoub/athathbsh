@@ -21,8 +21,12 @@ class SitemapController extends Controller
         $urls->push(['loc' => route('services.furniture'), 'priority' => '0.9', 'changefreq' => 'weekly']);
         $urls->push(['loc' => route('services.ac'), 'priority' => '0.8', 'changefreq' => 'weekly']);
         $urls->push(['loc' => route('services.restaurant'), 'priority' => '0.8', 'changefreq' => 'weekly']);
-        $urls->push(['loc' => route('services.kitchens'), 'priority' => '0.8', 'changefreq' => 'weekly']);
+        $urls->push(['loc' => route('services.cafe'), 'priority' => '0.8', 'changefreq' => 'weekly']);
         $urls->push(['loc' => route('services.appliances'), 'priority' => '0.8', 'changefreq' => 'weekly']);
+        $urls->push(['loc' => route('services.hotel'), 'priority' => '0.8', 'changefreq' => 'weekly']);
+        $urls->push(['loc' => route('services.warehouse'), 'priority' => '0.8', 'changefreq' => 'weekly']);
+        $urls->push(['loc' => route('services.carpets'), 'priority' => '0.8', 'changefreq' => 'weekly']);
+        $urls->push(['loc' => route('services.palace'), 'priority' => '0.8', 'changefreq' => 'weekly']);
 
         // Riyadh area pages
         $urls->push(['loc' => route('areas.north'), 'priority' => '0.7', 'changefreq' => 'monthly']);

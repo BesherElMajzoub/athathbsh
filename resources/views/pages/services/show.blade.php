@@ -74,6 +74,19 @@
         </section>
     @endif
 
+    <section>
+        <div class="container">
+            <h2>كيف نشتري {{ $service['name'] }}؟</h2>
+            <ol class="steps">
+                <li>تواصل معنا عبر الواتساب أو الاتصال وأرسل صور {{ $service['name'] }} + موقعك في {{ $business['city'] }}.
+                </li>
+                <li>سنقوم بتقييم مبدئي للسعر وتحديد موعد للمعاينة إذا لزم الأمر.</li>
+                <li>الاتفاق على السعر النهائي وموعد النقل المناسب لك.</li>
+                <li>فريقنا سيقوم بالفك والنقل والدفع الفوري قبل المغادرة.</li>
+            </ol>
+        </div>
+    </section>
+
     @if (!empty($service['additional_services']))
         <section>
             <div class="container">

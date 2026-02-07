@@ -1124,3 +1124,113 @@ a.chip:hover {
 .hero-service .lead {
     color: rgba(255,255,255,0.9);
 }
+
+/* =========================================
+   RESPONSIVE FIXES & NEW STYLES
+   ========================================= */
+
+/* Map Responsiveness */
+.map-container {
+    width: 100%;
+    position: relative;
+    /* Desktop: 16:9 aspect ratio */
+    aspect-ratio: 16 / 9;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        /* Mobile: fixed height or taller aspect ratio */
+        aspect-ratio: auto;
+        height: 400px;
+    }
+}
+
+/* Mobile Header & Nav Improvements */
+@media (max-width: 991px) {
+    .header-inner {
+        gap: var(--spacing-sm);
+    }
+    
+    .nav-toggle {
+        width: 48px;
+        height: 48px;
+        align-items: center;
+        justify-content: center;
+        z-index: 1001;
+    }
+    
+    .logo {
+        font-size: 1.25rem;
+        z-index: 1001; /* Ensure logo is clickable if menu is open? No, menu covers it usually */
+    }
+
+    .header-actions {
+        z-index: 1001;
+    }
+    
+    /* Ensure no overlap between CTA and Logo on very small screens */
+    .btn-sm {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.8rem;
+    }
+    
+    .btn-whatsapp span, 
+    .btn-call span {
+        display: none; /* Hide text on very small screens if needed, or keeping it */
+    }
+    
+    /* Only hide text on very small screens < 380px */
+    @media (max-width: 380px) {
+        .btn-whatsapp span, 
+        .btn-call span {
+            display: none;
+        }
+        .header-actions {
+            gap: 4px;
+        }
+    }
+}
+
+/* Prevent Horizontal Scroll */
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%; /* Ensure no overflow */
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: var(--max-width);
+        padding-left: var(--spacing-lg);
+        padding-right: var(--spacing-lg);
+    }
+}
+
+/* Fix Typography on Mobile */
+@media (max-width: 480px) {
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+    .hero { padding: var(--spacing-xl) 0; }
+    .btn { width: 100%; justify-content: center; } /* Full width buttons on mobile */
+    .cta-buttons { flex-direction: column; width: 100%; }
+    .header-actions .btn { width: auto; } /* Keep header buttons auto width */
+}
+
+/* Mobile Nav Stacking */
+.nav-mobile {
+    z-index: 999; /* Below toggle */
+    padding-top: var(--spacing-xl);
+}
+

@@ -24,6 +24,8 @@
                         <li><a href="{{ route('services.appliances') }}">شراء أجهزة كهربائية</a></li>
                         <li><a href="{{ route('services.hotel') }}">شراء أثاث فنادق</a></li>
                         <li><a href="{{ route('services.warehouse') }}">تفريغ مستودعات</a></li>
+                        <li><a href="{{ route('services.carpets') }}">شراء سجاد</a></li>
+                        <li><a href="{{ route('services.palace') }}">شراء أثاث قصور</a></li>
                     </ul>
                 </li>
                 <li class="nav-dropdown">
@@ -76,6 +78,8 @@
                 <li><a href="{{ route('services.index') }}">الخدمات</a></li>
                 <li><a href="{{ route('services.furniture') }}">شراء أثاث مستعمل</a></li>
                 <li><a href="{{ route('services.ac') }}">شراء مكيفات</a></li>
+                <li><a href="{{ route('services.carpets') }}">شراء سجاد</a></li>
+                <li><a href="{{ route('services.palace') }}">شراء أثاث قصور</a></li>
                 <li><a href="{{ route('areas.north') }}">شمال جدة</a></li>
                 <li><a href="{{ route('areas.south') }}">جنوب جدة</a></li>
                 <li><a href="{{ route('about') }}">من نحن</a></li>

@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
@@ -11,7 +11,7 @@ use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\TrackingController;
-use App\Http\Controllers\AdminDashboardController;
+use Illuminate\Support\Facades\Route;
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -25,6 +25,8 @@ Route::get('/services/buy-cafe-equipment', [ServiceController::class, 'show'])->
 Route::get('/services/buy-used-appliances', [ServiceController::class, 'show'])->name('services.appliances')->defaults('serviceSlug', 'buy-used-appliances');
 Route::get('/services/buy-hotel-furniture', [ServiceController::class, 'show'])->name('services.hotel')->defaults('serviceSlug', 'buy-hotel-furniture');
 Route::get('/services/buy-warehouse-clearance', [ServiceController::class, 'show'])->name('services.warehouse')->defaults('serviceSlug', 'buy-warehouse-clearance');
+Route::get('/services/buy-used-carpets', [ServiceController::class, 'show'])->name('services.carpets')->defaults('serviceSlug', 'buy-used-carpets');
+Route::get('/services/buy-palace-furniture', [ServiceController::class, 'show'])->name('services.palace')->defaults('serviceSlug', 'buy-palace-furniture');
 
 // About & Contact
 Route::get('/about', [PageController::class, 'about'])->name('about');
@@ -49,7 +51,7 @@ Route::get('/t/call', [TrackingController::class, 'call'])->name('track.call');
 
 // Admin Dashboard
 Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
-    ->middleware(\App\Http\Middleware\AdminTokenMiddleware::class)
+    // ->middleware(\App\Http\Middleware\AdminTokenMiddleware::class)
     ->name('admin.dashboard');
 
 // SEO

@@ -17,6 +17,8 @@
     @endif
 @endpush
 
+
+
 @section('content')
     <section class="hero">
         <div class="container hero-grid">

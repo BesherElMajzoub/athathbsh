@@ -8,16 +8,22 @@ class RobotsController extends Controller
 {
     public function index(): Response
     {
-        $sitemapUrl = rtrim(config('app.url'), '/').route('sitemap', absolute: false);
+        $content = <<<ROBOTS
+User-agent: *
+Allow: /
 
-        $content = implode("\n", [
-            'User-agent: *',
-            'Allow: /',
-            'Sitemap: '.$sitemapUrl,
-            '',
-        ]);
+Disallow: /admin/
+Disallow: /t/
 
-        return response($content, 200)->header('Content-Type', 'text/plain; charset=UTF-8');
+Sitemap: {$this->getSitemapUrl()}
+ROBOTS;
+
+        return response($content, 200)
+            ->header('Content-Type', 'text/plain; charset=utf-8');
+    }
+
+    protected function getSitemapUrl(): string
+    {
+        return url('/sitemap.xml');
     }
 }
-

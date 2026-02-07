@@ -1,18 +1,23 @@
-@props([
-    'services' => [],
-])
+@props(['services'])
 
 @php
-    $vars = ['brand' => $business['brand_name'], 'city' => $business['city']];
+    $routeMap = [
+        'buy-used-furniture' => 'services.furniture',
+        'buy-air-conditioners' => 'services.ac',
+        'buy-restaurant-equipment' => 'services.restaurant',
+        'buy-used-kitchens' => 'services.kitchens',
+        'buy-used-appliances' => 'services.appliances',
+    ];
 @endphp
 
-<div class="grid service-grid">
+<div class="service-grid">
     @foreach ($services as $slug => $service)
-        <a class="card service-card" href="{{ route('services.show', ['serviceSlug' => $slug]) }}">
-            <div class="card-title">{{ $service['name'] }}</div>
-            <div class="card-text">{{ \App\Support\Template::render((string) ($service['excerpt'] ?? ''), $vars) }}</div>
-            <div class="card-link">التفاصيل</div>
-        </a>
+        @if (is_array($service) && isset($service['name']))
+            <a href="{{ route($routeMap[$slug] ?? 'services.index') }}" class="service-card">
+                <h3>{{ $service['name'] }}</h3>
+                <p>{{ \Illuminate\Support\Str::limit($service['excerpt'] ?? '', 100) }}</p>
+                <span class="card-link">اعرف المزيد ←</span>
+            </a>
+        @endif
     @endforeach
 </div>
-

@@ -1,59 +1,40 @@
 @extends('layouts.app')
 
-@section('content')
-    <section class="page-hero">
-        <div class="container">
-            <h1>مناطق الخدمة في {{ $business['city'] }}</h1>
-            <p class="lead">
-                نغطي أحياء {{ $business['city'] }} بشكل واسع ونصل لموقعك للمعاينة والشراء. اختر الحي لمعرفة التفاصيل.
-            </p>
-            <x-cta size="sm" whatsappText="السلام عليكم، أنا في {{ $business['city'] }} وأحتاج تقييم مجاني. هذا الحي:" />
-        </div>
-    </section>
+@push('schema')
+    <script type="application/ld+json">
+        {!! json_encode(\App\Support\Schema::localBusiness(config('business')), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+    </script>
+@endpush
 
-    <section class="alt">
+@section('content')
+    <section class="hero hero-page">
         <div class="container">
-            <div class="map-card">
-                <div class="map-title">خريطة التغطية</div>
-                <iframe
-                    class="map"
-                    src="{{ $business['map_embed_src'] }}"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title="خريطة {{ $business['city'] }}"
-                ></iframe>
-                <div class="map-note">
-                    هذه الخريطة لإظهار نطاق الخدمة. نصل لموقع العميل داخل {{ $business['city'] }} للمعاينة والشراء.
-                </div>
-            </div>
+            <h1>مناطق الخدمة في الرياض</h1>
+            <p class="lead">نغطي جميع مناطق الرياض: شمال وجنوب وشرق وغرب. نصل لموقعك للمعاينة والشراء.</p>
         </div>
     </section>
 
     <section>
         <div class="container">
-            <h2>الأحياء والمناطق</h2>
-
-            @foreach ($areaGroups as $groupName => $slugs)
-                <div class="area-group">
-                    <h3>{{ $groupName }}</h3>
-                    <div class="chips">
-                        @foreach ($slugs as $slug)
-                            @php($area = $areas[$slug] ?? null)
-                            @if ($area)
-                                <a class="chip" href="{{ route('areas.show', ['areaSlug' => $slug]) }}">{{ $area['name'] }}</a>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-            @endforeach
+            <div class="areas-grid">
+                @foreach ($areas as $slug => $area)
+                    <a href="{{ route('areas.' . $slug) }}" class="area-card">
+                        <h2>{{ $area['name'] }}</h2>
+                        <p>{{ \Illuminate\Support\Str::limit($area['intro'], 120) }}</p>
+                        <span class="card-link">اعرف المزيد ←</span>
+                    </a>
+                @endforeach
+            </div>
         </div>
     </section>
 
     <section class="alt">
         <div class="container">
-            <h2>الخدمات المتاحة</h2>
-            <x-service-grid :services="config('services', [])" />
+            <div class="callout callout-cta">
+                <h2>تواصل معنا الآن</h2>
+                <p>أينما كنت في الرياض، نصل إليك للمعاينة والشراء</p>
+                <x-cta size="lg" />
+            </div>
         </div>
     </section>
 @endsection
-

@@ -81,7 +81,7 @@ class Schema
      * @param  array<string, string>  $vars
      * @return array<string, mixed>
      */
-    public static function faqPage(array $faqs, array $vars): array
+    public static function faqPage(array $faqs, array $vars = []): array
     {
         $entities = [];
 

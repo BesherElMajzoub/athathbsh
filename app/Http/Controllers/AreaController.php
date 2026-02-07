@@ -2,57 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Support\Template;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class AreaController extends Controller
 {
     public function index(): View
     {
+        $areas = config('areas.canonicals');
         $business = config('business');
 
         $seo = [
-            'title' => "مناطق شراء الأثاث المستعمل {$business['city']} | تغطية الأحياء — {$business['brand_name']}",
-            'description' => "نغطي أحياء {$business['city']} (شمال/جنوب/شرق/وسط). اختر الحي لمعرفة تفاصيل الخدمة وروابط الخدمات المتاحة والتواصل السريع.",
+            'title' => 'مناطق الخدمة في الرياض | شراء أثاث مستعمل',
+            'description' => 'نغطي جميع مناطق الرياض: شمال وجنوب وشرق وغرب. شراء أثاث مستعمل مع تقييم مجاني ونقل ودفع فوري.',
         ];
 
-        return view('pages.areas.index', [
-            'seo' => $seo,
-            'areas' => config('areas.canonicals', []),
-            'areaGroups' => config('areas.groups', []),
-        ]);
+        return view('pages.areas.index', compact('areas', 'business', 'seo'));
     }
 
-    public function show(string $areaSlug): View|RedirectResponse
+    public function show(string $areaSlug): View
     {
-        $aliases = config('areas.aliases', []);
-        if (isset($aliases[$areaSlug])) {
-            return redirect()->route('areas.show', ['areaSlug' => $aliases[$areaSlug]], 301);
+        $areas = config('areas.canonicals');
+        $area = $areas[$areaSlug] ?? null;
+
+        if (!$area) {
+            abort(404);
         }
 
-        $area = config("areas.canonicals.$areaSlug");
-        abort_if($area === null, 404);
-
         $business = config('business');
-
-        $vars = [
-            'brand' => $business['brand_name'],
-            'city' => $business['city'],
-            'area' => (string) ($area['name'] ?? $areaSlug),
-        ];
+        $site = config('site');
 
         $seo = [
-            'title' => Template::render((string) ($area['meta']['title'] ?? ''), $vars),
-            'description' => Template::render((string) ($area['meta']['description'] ?? ''), $vars),
+            'title' => $area['meta']['title'] ?? "شراء أثاث مستعمل {$area['name']}",
+            'description' => $area['meta']['description'] ?? $area['intro'],
+            'canonical' => url()->current(),
         ];
 
-        return view('pages.areas.show', [
-            'seo' => $seo,
-            'area' => $area,
-            'areaSlug' => $areaSlug,
-            'services' => config('services', []),
-        ]);
+        return view('pages.areas.show', compact('area', 'areaSlug', 'business', 'site', 'seo'));
     }
 }
-

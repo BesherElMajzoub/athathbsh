@@ -10,27 +10,47 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\RobotsController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\AdminDashboardController;
 
+// Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/الخدمات', [ServiceController::class, 'index'])->name('services.index');
-Route::get('/الخدمات/{serviceSlug}', [ServiceController::class, 'show'])->name('services.show');
+// Services
+Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+Route::get('/services/buy-used-furniture', [ServiceController::class, 'show'])->name('services.furniture')->defaults('serviceSlug', 'buy-used-furniture');
+Route::get('/services/buy-air-conditioners', [ServiceController::class, 'show'])->name('services.ac')->defaults('serviceSlug', 'buy-air-conditioners');
+Route::get('/services/buy-restaurant-equipment', [ServiceController::class, 'show'])->name('services.restaurant')->defaults('serviceSlug', 'buy-restaurant-equipment');
+Route::get('/services/buy-used-kitchens', [ServiceController::class, 'show'])->name('services.kitchens')->defaults('serviceSlug', 'buy-used-kitchens');
+Route::get('/services/buy-used-appliances', [ServiceController::class, 'show'])->name('services.appliances')->defaults('serviceSlug', 'buy-used-appliances');
 
-Route::get('/الأسئلة-الشائعة', [FaqController::class, 'index'])->name('faq');
+// About & Contact
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+Route::post('/contact', [ContactController::class, 'store'])->middleware('throttle:10,1')->name('contact.store');
 
-Route::get('/مناطق-الخدمة', [AreaController::class, 'index'])->name('areas.index');
-Route::get('/مناطق-الخدمة/{areaSlug}', [AreaController::class, 'show'])->name('areas.show');
+// FAQ
+Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
-Route::get('/من-نحن', [PageController::class, 'about'])->name('about');
-Route::get('/موقعنا', [PageController::class, 'location'])->name('location');
+// Riyadh Areas
+Route::get('/riyadh/north', [AreaController::class, 'show'])->name('areas.north')->defaults('areaSlug', 'north');
+Route::get('/riyadh/south', [AreaController::class, 'show'])->name('areas.south')->defaults('areaSlug', 'south');
+Route::get('/riyadh/east', [AreaController::class, 'show'])->name('areas.east')->defaults('areaSlug', 'east');
+Route::get('/riyadh/west', [AreaController::class, 'show'])->name('areas.west')->defaults('areaSlug', 'west');
 
-Route::get('/تواصل-معنا', [ContactController::class, 'show'])->name('contact.show');
-Route::post('/تواصل-معنا', [ContactController::class, 'store'])
-    ->middleware('throttle:10,1')
-    ->name('contact.store');
+// Tracking Routes
+Route::get('/t/whatsapp', [TrackingController::class, 'whatsapp'])->name('track.whatsapp');
+Route::get('/t/call', [TrackingController::class, 'call'])->name('track.call');
 
-Route::get('/سياسة-الخصوصية', [LegalController::class, 'privacy'])->name('legal.privacy');
-Route::get('/الشروط-والأحكام', [LegalController::class, 'terms'])->name('legal.terms');
+// Admin Dashboard
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
+    ->middleware(\App\Http\Middleware\AdminTokenMiddleware::class)
+    ->name('admin.dashboard');
 
+// SEO
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots');
+
+// Legal
+Route::get('/privacy-policy', [LegalController::class, 'privacy'])->name('legal.privacy');
+Route::get('/terms', [LegalController::class, 'terms'])->name('legal.terms');

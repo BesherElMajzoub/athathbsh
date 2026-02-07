@@ -8,31 +8,31 @@ class SitemapController extends Controller
 {
     public function index(): Response
     {
-        $urls = [
-            route('home'),
-            route('services.index'),
-            route('faq'),
-            route('areas.index'),
-            route('about'),
-            route('location'),
-            route('contact.show'),
-            route('legal.privacy'),
-            route('legal.terms'),
-        ];
+        $urls = collect();
 
-        foreach (array_keys(config('services', [])) as $slug) {
-            $urls[] = route('services.show', ['serviceSlug' => $slug]);
-        }
+        // Static pages
+        $urls->push(['loc' => route('home'), 'priority' => '1.0', 'changefreq' => 'weekly']);
+        $urls->push(['loc' => route('services.index'), 'priority' => '0.9', 'changefreq' => 'weekly']);
+        $urls->push(['loc' => route('about'), 'priority' => '0.7', 'changefreq' => 'monthly']);
+        $urls->push(['loc' => route('contact.show'), 'priority' => '0.7', 'changefreq' => 'monthly']);
+        $urls->push(['loc' => route('faq'), 'priority' => '0.8', 'changefreq' => 'monthly']);
 
-        foreach (array_keys(config('areas.canonicals', [])) as $slug) {
-            $urls[] = route('areas.show', ['areaSlug' => $slug]);
-        }
+        // Service pages
+        $urls->push(['loc' => route('services.furniture'), 'priority' => '0.9', 'changefreq' => 'weekly']);
+        $urls->push(['loc' => route('services.ac'), 'priority' => '0.8', 'changefreq' => 'weekly']);
+        $urls->push(['loc' => route('services.restaurant'), 'priority' => '0.8', 'changefreq' => 'weekly']);
+        $urls->push(['loc' => route('services.kitchens'), 'priority' => '0.8', 'changefreq' => 'weekly']);
+        $urls->push(['loc' => route('services.appliances'), 'priority' => '0.8', 'changefreq' => 'weekly']);
 
-        $urls = array_values(array_unique($urls));
+        // Riyadh area pages
+        $urls->push(['loc' => route('areas.north'), 'priority' => '0.7', 'changefreq' => 'monthly']);
+        $urls->push(['loc' => route('areas.south'), 'priority' => '0.7', 'changefreq' => 'monthly']);
+        $urls->push(['loc' => route('areas.east'), 'priority' => '0.7', 'changefreq' => 'monthly']);
+        $urls->push(['loc' => route('areas.west'), 'priority' => '0.7', 'changefreq' => 'monthly']);
 
-        $xml = view('seo.sitemap', ['urls' => $urls])->render();
+        $content = view('seo.sitemap', ['urls' => $urls])->render();
 
-        return response($xml, 200)->header('Content-Type', 'application/xml; charset=UTF-8');
+        return response($content, 200)
+            ->header('Content-Type', 'application/xml; charset=utf-8');
     }
 }
-

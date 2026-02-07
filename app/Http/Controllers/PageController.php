@@ -9,29 +9,26 @@ class PageController extends Controller
     public function about(): View
     {
         $business = config('business');
+        $site = config('site');
 
         $seo = [
-            'title' => "من نحن | {$business['brand_name']} لشراء الأثاث المستعمل {$business['city']}",
-            'description' => "تعرّف على {$business['brand_name']}: خدمة شراء مستعمل موثوقة في {$business['city']} بتقييم واضح ونقل ودفع فوري. هدفنا تسهيل البيع عليك بسرعة واحترافية.",
+            'title' => 'من نحن | شراء أثاث مستعمل بالرياض',
+            'description' => 'نحن متخصصون في شراء الأثاث المستعمل في الرياض منذ أكثر من ' . ($business['years_experience'] ?? '10') . ' سنوات. نوفر تقييم مجاني ونقل ودفع فوري.',
         ];
 
-        return view('pages.about', [
-            'seo' => $seo,
-        ]);
+        return view('pages.about', compact('business', 'site', 'seo'));
     }
 
     public function location(): View
     {
         $business = config('business');
+        $site = config('site');
 
         $seo = [
-            'title' => "موقعنا | {$business['brand_name']} — شراء مستعمل في {$business['city']}",
-            'description' => "خريطة تغطية خدمتنا في {$business['city']} وكيف نصل لموقعك للمعاينة والشراء. تواصل معنا الآن عبر الاتصال أو واتساب.",
+            'title' => 'موقعنا | شراء أثاث مستعمل بالرياض',
+            'description' => 'موقعنا في الرياض. نغطي جميع مناطق الرياض لشراء الأثاث المستعمل.',
         ];
 
-        return view('pages.location', [
-            'seo' => $seo,
-        ]);
+        return view('pages.location', compact('business', 'site', 'seo'));
     }
 }
-

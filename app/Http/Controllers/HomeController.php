@@ -8,21 +8,32 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $services = config('services', []);
-        $areas = config('areas.canonicals', []);
-
         $business = config('business');
+        $site = config('site');
+        $services = config('services');
+        $areas = config('areas.canonicals');
 
-        $seo = [
-            'title' => "شراء أثاث مستعمل {$business['city']} | {$business['brand_name']} — تقييم مجاني ونقل ودفع فوري",
-            'description' => "نشتري الأثاث المستعمل في {$business['city']} بأفضل سعر. تقييم مجاني، فك ونقل، ودفع فوري. اتصل الآن أو راسلنا واتساب لعرض سريع.",
+        // Quick FAQs for homepage
+        $quickFaqs = [
+            [
+                'q' => 'هل التقييم مجاني؟',
+                'a' => 'نعم، نوفر تقييم ومعاينة مجانية داخل الرياض.',
+            ],
+            [
+                'q' => 'ما هي مناطق الرياض التي تغطونها؟',
+                'a' => 'نغطي جميع مناطق الرياض: شمال وجنوب وشرق وغرب.',
+            ],
+            [
+                'q' => 'هل الدفع فوري؟',
+                'a' => 'نعم، الدفع فوري بعد الاتفاق والتنفيذ.',
+            ],
         ];
 
-        return view('pages.home', [
-            'seo' => $seo,
-            'services' => $services,
-            'areas' => $areas,
-            'quickFaqs' => array_slice(config('faqs', []), 0, 3),
-        ]);
+        $seo = [
+            'title' => 'شراء أثاث مستعمل بالرياض | تقييم مجاني ودفع فوري',
+            'description' => 'نشتري الأثاث المستعمل في الرياض: غرف نوم، كنب، مجالس، مكيفات، وأجهزة كهربائية. تقييم مجاني ونقل وتحميل ودفع فوري. تواصل الآن.',
+        ];
+
+        return view('pages.home', compact('business', 'site', 'services', 'areas', 'quickFaqs', 'seo'));
     }
 }

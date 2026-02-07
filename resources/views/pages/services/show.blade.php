@@ -1,105 +1,105 @@
 @extends('layouts.app')
 
 @push('schema')
-    @php
-        $schemaVars = ['brand' => $business['brand_name'], 'city' => $business['city']];
-    @endphp
     <script type="application/ld+json">
-        {!! json_encode(\App\Support\Schema::localBusiness($business), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
-    </script>
-    <script type="application/ld+json">
-        {!! json_encode(\App\Support\Schema::service($business, $service, $schemaVars), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+        {!! json_encode(\App\Support\Schema::localBusiness(config('business')), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
     </script>
     @if (!empty($service['faqs']))
         <script type="application/ld+json">
-            {!! json_encode(\App\Support\Schema::faqPage($service['faqs'], $schemaVars), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
-        </script>
+        {!! json_encode(\App\Support\Schema::faqPage($service['faqs']), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+    </script>
     @endif
 @endpush
 
 @section('content')
-    @php
-        $vars = ['brand' => $business['brand_name'], 'city' => $business['city']];
-        $h1 = \App\Support\Template::render((string) ($service['h1'] ?? $service['name']), $vars);
-        $lead = \App\Support\Template::render((string) ($service['hero']['lead'] ?? ''), $vars);
-        $eyebrow = \App\Support\Template::render((string) ($service['hero']['eyebrow'] ?? ''), $vars);
-        $waText = \App\Support\Template::render((string) ($service['whatsapp_message'] ?? ''), $vars);
-    @endphp
-
-    <section class="page-hero">
+    <section class="hero hero-service">
         <div class="container">
-            <div class="breadcrumbs">
-                <a href="{{ route('home') }}">الرئيسية</a>
-                <span>/</span>
-                <a href="{{ route('services.index') }}">الخدمات</a>
-                <span>/</span>
-                <span>{{ $service['name'] }}</span>
-            </div>
+            <span class="eyebrow">{{ $service['hero']['eyebrow'] ?? 'خدماتنا' }}</span>
+            <h1>{{ $service['h1'] }}</h1>
+            <p class="lead">{{ $service['hero']['lead'] ?? $service['excerpt'] }}</p>
+            <x-cta size="lg" />
+        </div>
+    </section>
 
-            <span class="eyebrow">{{ $eyebrow }}</span>
-            <h1>{{ $h1 }}</h1>
-            <p class="lead">{{ $lead }}</p>
-            <x-cta size="lg" :whatsappText="$waText" />
-
-            @if (!empty($service['highlights']))
+    @if (!empty($service['highlights']))
+        <section>
+            <div class="container">
                 <div class="highlights">
-                    @foreach ($service['highlights'] as $text)
-                        <div class="highlight">
-                            {{ \App\Support\Template::render((string) $text, $vars) }}
+                    @foreach ($service['highlights'] as $highlight)
+                        <div class="highlight-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>{{ $highlight }}</span>
                         </div>
                     @endforeach
                 </div>
-            @endif
-        </div>
-    </section>
-
-    <section>
-        <div class="container content">
-            @foreach (($service['sections'] ?? []) as $section)
-                <div class="content-block">
-                    <h2>{{ $section['title'] ?? '' }}</h2>
-
-                    @foreach (($section['paragraphs'] ?? []) as $p)
-                        <p>{{ \App\Support\Template::render((string) $p, $vars) }}</p>
-                    @endforeach
-
-                    @if (!empty($section['bullets']))
-                        <ul class="bullets">
-                            @foreach ($section['bullets'] as $b)
-                                <li>{{ \App\Support\Template::render((string) $b, $vars) }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
-                </div>
-            @endforeach
-
-            <div class="callout">
-                <div class="callout-title">تواصل سريع</div>
-                <div class="callout-text">
-                    أرسل صور الأغراض + الحي داخل {{ $business['city'] }}، ونرتب لك تقييم مجاني وخطوات واضحة.
-                </div>
-                <x-cta size="sm" :whatsappText="$waText" />
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
+
+    @foreach ($service['sections'] ?? [] as $section)
+        <section class="{{ $loop->odd ? '' : 'alt' }}">
+            <div class="container">
+                <h2>{{ $section['title'] }}</h2>
+                @if (!empty($section['paragraphs']))
+                    @foreach ($section['paragraphs'] as $paragraph)
+                        <p>{{ $paragraph }}</p>
+                    @endforeach
+                @endif
+                @if (!empty($section['bullets']))
+                    <ul class="check-list">
+                        @foreach ($section['bullets'] as $bullet)
+                            <li>{{ $bullet }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+        </section>
+    @endforeach
 
     @if (!empty($service['faqs']))
         <section class="alt">
             <div class="container">
-                <h2>أسئلة شائعة عن الخدمة</h2>
-                <x-faq :faqs="$service['faqs']" :vars="$vars" />
+                <h2>أسئلة شائعة</h2>
+                <x-faq :faqs="$service['faqs']" />
             </div>
         </section>
     @endif
 
     <section>
         <div class="container">
-            <h2>خدمات مرتبطة</h2>
-            <x-service-grid :services="$relatedServices" />
-            <div class="section-actions">
-                <a class="btn btn-ghost btn-sm" href="{{ route('areas.index') }}">شاهد مناطق الخدمة</a>
-                <a class="btn btn-ghost btn-sm" href="{{ route('contact.show') }}">تواصل معنا</a>
+            <div class="callout callout-cta">
+                <h2>جاهز للبيع؟</h2>
+                <p>تواصل معنا الآن للحصول على تقييم مجاني</p>
+                <x-cta size="lg" />
             </div>
         </div>
     </section>
+
+    @if ($relatedServices->isNotEmpty())
+        <section class="alt">
+            <div class="container">
+                <h2>خدمات ذات صلة</h2>
+                @php
+                    $routeMap = [
+                        'buy-used-furniture' => 'services.furniture',
+                        'buy-air-conditioners' => 'services.ac',
+                        'buy-restaurant-equipment' => 'services.restaurant',
+                        'buy-used-kitchens' => 'services.kitchens',
+                        'buy-used-appliances' => 'services.appliances',
+                    ];
+                @endphp
+                <div class="related-services">
+                    @foreach ($relatedServices as $related)
+                        <a href="{{ route($routeMap[$related['slug']] ?? 'services.index') }}" class="related-card">
+                            <h3>{{ $related['name'] }}</h3>
+                            <p>{{ \Illuminate\Support\Str::limit($related['excerpt'], 100) }}</p>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
 @endsection

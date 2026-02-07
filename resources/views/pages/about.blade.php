@@ -2,46 +2,56 @@
 
 @push('schema')
     <script type="application/ld+json">
-        {!! json_encode(\App\Support\Schema::localBusiness($business), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+        {!! json_encode(\App\Support\Schema::localBusiness(config('business')), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
     </script>
 @endpush
 
 @section('content')
-    <section class="page-hero">
+    <section class="hero hero-page">
         <div class="container">
             <h1>من نحن</h1>
-            <p class="lead">
-                نحن {{ $business['brand_name'] }} — نشتري المستعمل في {{ $business['city'] }} بخدمة سريعة، تقييم واضح،
-                ونقل وتحميل بعد الاتفاق.
-            </p>
-            <x-cta size="sm" whatsappText="السلام عليكم، أحتاج تقييم مجاني في {{ $business['city'] }}." />
+            <p class="lead">خبرة {{ $business['years_experience'] ?? '10' }}+ سنة في شراء الأثاث المستعمل في الرياض</p>
         </div>
     </section>
 
     <section>
-        <div class="container content">
-            <div class="content-block">
-                <h2>كيف نعمل؟</h2>
+        <div class="container">
+            <div class="about-content">
+                <h2>خدماتنا في الرياض</h2>
                 <p>
-                    نبدأ بتواصل بسيط (اتصال أو واتساب) مع صور وموقعك داخل {{ $business['city'] }}. نقيّم بشكل مبدئي،
-                    ثم نحدد معاينة مجانية إذا لزم، وبعد الاتفاق نرتب النقل والدفع بشكل مباشر.
+                    نحن متخصصون في شراء الأثاث المستعمل في الرياض منذ أكثر من {{ $business['years_experience'] ?? '10' }}
+                    سنوات.
+                    نقدم خدمة شراء الأثاث والمكيفات والأجهزة الكهربائية المستعملة مع تقييم مجاني ونقل وتحميل ودفع فوري.
+                </p>
+
+                <h3>لماذا تختارنا؟</h3>
+                <ul class="check-list">
+                    <li>خبرة {{ $business['years_experience'] ?? '10' }}+ سنة في السوق السعودي</li>
+                    <li>تغطية شاملة لجميع مناطق الرياض</li>
+                    <li>تقييم مجاني ومعاينة في موقعك</li>
+                    <li>أسعار عادلة وشفافة</li>
+                    <li>فك ونقل وتحميل بعد الاتفاق</li>
+                    <li>دفع فوري بعد الاتفاق</li>
+                </ul>
+
+                <h3>نشتري في الرياض فقط</h3>
+                <p>
+                    نركز على خدمة عملائنا في الرياض بأعلى جودة. نغطي جميع مناطق الرياض:
+                    <a href="{{ route('areas.north') }}">شمال الرياض</a>،
+                    <a href="{{ route('areas.south') }}">جنوب الرياض</a>،
+                    <a href="{{ route('areas.east') }}">شرق الرياض</a>،
+                    و<a href="{{ route('areas.west') }}">غرب الرياض</a>.
                 </p>
             </div>
+        </div>
+    </section>
 
-            <div class="content-block">
-                <h2>وش يهمنا في التعامل؟</h2>
-                <ul class="bullets">
-                    <li>وضوح في التقييم والتسعير</li>
-                    <li>التزام بالمواعيد قدر الإمكان</li>
-                    <li>تنفيذ مرتب بدون إزعاج للعميل</li>
-                    <li>سرعة في الرد والتنسيق</li>
-                </ul>
-            </div>
-
-            <div class="callout">
-                <div class="callout-title">جاهز تبدأ؟</div>
-                <div class="callout-text">أرسل صور الأثاث/العفش والموقع، ونرتب لك تقييم مجاني.</div>
-                <x-cta size="sm" whatsappText="السلام عليكم، هذه صور الأغراض + الحي داخل {{ $business['city'] }}." />
+    <section class="alt">
+        <div class="container">
+            <div class="callout callout-cta">
+                <h2>تواصل معنا الآن</h2>
+                <p>احصل على تقييم مجاني للأثاث المستعمل</p>
+                <x-cta size="lg" />
             </div>
         </div>
     </section>

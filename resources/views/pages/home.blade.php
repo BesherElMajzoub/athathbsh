@@ -2,16 +2,11 @@
 
 @push('schema')
     <script type="application/ld+json">
-        {!! json_encode(\App\Support\Schema::localBusiness($business), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+        {!! json_encode(\App\Support\Schema::localBusiness(config('business')), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
     </script>
 @endpush
 
 @section('content')
-    @php
-        $years = trim((string) ($business['years_experience'] ?? ''));
-        $trustLine = $years !== '' ? "خبرة {$years}+ سنة" : 'خبرة في شراء المستعمل';
-    @endphp
-
     <section class="hero">
         <div class="container hero-grid">
             <div class="hero-copy">
@@ -22,10 +17,7 @@
                     نحن نصل لموقعك للتقييم والشراء مع نقل وتحميل بعد الاتفاق.
                 </p>
 
-                <x-cta
-                    size="lg"
-                    whatsappText="السلام عليكم، عندي أثاث مستعمل للبيع في {{ $business['city'] }} وأحتاج تقييم مجاني."
-                />
+                <x-cta size="lg" />
 
                 <div class="micro-copy">
                     <span>تقييم مجاني</span>
@@ -36,14 +28,14 @@
 
             <div class="hero-panel">
                 <div class="panel-card">
-                    <div class="panel-title">لماذا {{ $business['brand_name'] }}؟</div>
+                    <div class="panel-title">لماذا تختارنا؟</div>
                     <ul class="panel-list">
-                        <li>{{ $trustLine }}</li>
+                        <li>خبرة {{ $business['years_experience'] ?? '10' }}+ سنة في شراء المستعمل</li>
                         <li>استجابة سريعة داخل {{ $business['city'] }}</li>
                         <li>تغطية أحياء {{ $business['city'] }} بشكل واسع</li>
                         <li>تسعير واضح حسب الحالة والكمية</li>
                     </ul>
-                    <a class="btn btn-ghost btn-sm" href="{{ route('areas.index') }}">شاهد مناطق الخدمة</a>
+                    <a class="btn btn-ghost btn-sm" href="{{ route('areas.north') }}">شاهد مناطق الخدمة</a>
                 </div>
             </div>
         </div>
@@ -53,7 +45,7 @@
         <div class="container">
             <h2>خدماتنا</h2>
             <p class="section-lead">
-                صفحات خدمات مستقلة ومحسّنة للبحث، مع أسئلة شائعة وروابط داخلية تساعدك على الوصول للخدمة المناسبة بسرعة.
+                نشتري جميع أنواع الأثاث والأجهزة المستعملة في {{ $business['city'] }} مع تقييم مجاني وخدمة نقل ودفع فوري.
             </p>
             <x-service-grid :services="$services" />
         </div>
@@ -70,9 +62,9 @@
             </ol>
 
             <div class="callout">
-                <div class="callout-title">تبحث عن “أرقام شراء الأثاث المستعمل بجدة”؟</div>
+                <div class="callout-title">تبحث عن "أرقام شراء الأثاث المستعمل بالرياض"؟</div>
                 <div class="callout-text">اضغط اتصال أو واتساب، وراح نرد عليك بسرعة ونرتب المعاينة.</div>
-                <x-cta size="sm" whatsappText="السلام عليكم، أحتاج تقييم مجاني للأثاث المستعمل في {{ $business['city'] }}." />
+                <x-cta size="sm" />
             </div>
         </div>
     </section>
@@ -81,13 +73,13 @@
         <div class="container">
             <h2>مناطق الخدمة في {{ $business['city'] }}</h2>
             <p class="section-lead">
-                نغطي {{ $business['city'] }} (شمال/جنوب/شرق/وسط) ونصل لموقعك للمعاينة والشراء.
+                نغطي {{ $business['city'] }} (شمال/جنوب/شرق/غرب) ونصل لموقعك للمعاينة والشراء.
             </p>
             <div class="chips">
-                @foreach (array_slice($areas, 0, 10, true) as $slug => $area)
-                    <a class="chip" href="{{ route('areas.show', ['areaSlug' => $slug]) }}">{{ $area['name'] }}</a>
-                @endforeach
-                <a class="chip chip-primary" href="{{ route('areas.index') }}">كل الأحياء</a>
+                <a class="chip" href="{{ route('areas.north') }}">شمال الرياض</a>
+                <a class="chip" href="{{ route('areas.south') }}">جنوب الرياض</a>
+                <a class="chip" href="{{ route('areas.east') }}">شرق الرياض</a>
+                <a class="chip" href="{{ route('areas.west') }}">غرب الرياض</a>
             </div>
         </div>
     </section>

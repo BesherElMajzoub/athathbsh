@@ -1,36 +1,70 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="format-detection" content="telephone=yes">
-        <meta name="theme-color" content="#0b6e4f">
 
-        <title>{{ $seo['title'] ?? $business['brand_name'] }}</title>
-        <meta name="description" content="{{ $seo['description'] ?? '' }}">
-        <link rel="canonical" href="{{ $seo['canonical'] ?? url()->current() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="theme-color" content="#0b6e4f">
 
-        <meta property="og:locale" content="ar_SA">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="{{ $seo['title'] ?? $business['brand_name'] }}">
-        <meta property="og:description" content="{{ $seo['description'] ?? '' }}">
-        <meta property="og:url" content="{{ url()->current() }}">
+    {{-- Primary Meta Tags --}}
+    <title>{{ $seo['title'] ?? config('site.site_name_ar') }}</title>
+    <meta name="description" content="{{ $seo['description'] ?? '' }}">
+    <meta name="keywords"
+        content="{{ $seo['keywords'] ?? 'شراء أثاث مستعمل, الرياض, شراء مكيفات, شراء اجهزة كهربائية' }}">
+    <link rel="canonical" href="{{ $seo['canonical'] ?? url()->current() }}">
 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @stack('schema')
-    </head>
-    <body>
-        <a class="skip-link" href="#main">تخطي إلى المحتوى</a>
+    {{-- Open Graph / Facebook --}}
+    <meta property="og:locale" content="ar_SA">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ config('site.site_name_ar') }}">
+    <meta property="og:title" content="{{ $seo['title'] ?? config('site.site_name_ar') }}">
+    <meta property="og:description" content="{{ $seo['description'] ?? '' }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    @if (isset($seo['image']))
+        <meta property="og:image" content="{{ $seo['image'] }}">
+    @endif
 
-        @include('partials.header')
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $seo['title'] ?? config('site.site_name_ar') }}">
+    <meta name="twitter:description" content="{{ $seo['description'] ?? '' }}">
+    @if (isset($seo['image']))
+        <meta name="twitter:image" content="{{ $seo['image'] }}">
+    @endif
 
-        <main id="main" class="main">
-            @yield('content')
-        </main>
+    {{-- Preconnect for performance --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        @include('partials.footer')
+    {{-- Fonts --}}
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 
-        <x-sticky-mobile-cta />
-    </body>
+    {{-- Styles --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+    {{-- Favicon --}}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
+    {{-- Schema.org Markup --}}
+    @stack('schema')
+</head>
+
+<body>
+    <a class="skip-link" href="#main">تخطي إلى المحتوى</a>
+
+    @include('partials.header')
+
+    <main id="main" class="main">
+        @yield('content')
+    </main>
+
+    @include('partials.footer')
+
+    <x-sticky-mobile-cta />
+
+    {{-- Site JS --}}
+    <script src="{{ asset('assets/js/site.js') }}" defer></script>
+</body>
+
 </html>
-

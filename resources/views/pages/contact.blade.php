@@ -2,94 +2,113 @@
 
 @push('schema')
     <script type="application/ld+json">
-        {!! json_encode(\App\Support\Schema::localBusiness($business), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+        {!! json_encode(\App\Support\Schema::localBusiness(config('business')), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
     </script>
 @endpush
 
 @section('content')
-    <section class="page-hero">
+    <section class="hero hero-page">
         <div class="container">
             <h1>تواصل معنا</h1>
-            <p class="lead">
-                اتصل الآن أو راسل واتساب لشراء الأثاث المستعمل في {{ $business['city'] }}. نرد عليك بأسرع وقت ممكن.
-            </p>
-            <div class="contact-quick">
-                <a class="btn btn-primary btn-lg" href="{{ $business['tel_uri'] }}">اتصال: {{ $business['phone'] }}</a>
-                <a class="btn btn-outline btn-lg" href="{{ \App\Support\Business::whatsappLink('السلام عليكم، أحتاج تقييم مجاني في '.$business['city'].'.') }}">واتساب</a>
-            </div>
-            <div class="contact-hours">ساعات العمل: {{ $business['opening_hours_ar'] }}</div>
+            <p class="lead">نحن هنا لمساعدتك. تواصل معنا عبر الاتصال أو الواتساب</p>
         </div>
     </section>
 
     <section>
         <div class="container">
-            <h2>نموذج التواصل</h2>
-            <p class="section-lead">اكتب بيانات بسيطة، ونرجع لك بسرعة للتقييم والاتفاق.</p>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>معلومات التواصل</h2>
 
-            @if (session('contact_success'))
-                <div class="notice notice-success">
-                    تم استلام رسالتك. بنرجع لك بأسرع وقت ممكن.
-                </div>
-            @endif
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                        </svg>
+                        <div>
+                            <strong>الهاتف</strong>
+                            <p>{{ config('site.phone_display') }}</p>
+                        </div>
+                    </div>
 
-            @if ($errors->any())
-                <div class="notice notice-error">
-                    {{ $errors->first() }}
-                </div>
-            @endif
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                        </svg>
+                        <div>
+                            <strong>واتساب</strong>
+                            <p>{{ config('site.phone_display') }}</p>
+                        </div>
+                    </div>
 
-            <form class="form" method="post" action="{{ route('contact.store') }}">
-                @csrf
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                        </svg>
+                        <div>
+                            <strong>الموقع</strong>
+                            <p>{{ $business['address_ar'] }}</p>
+                        </div>
+                    </div>
 
-                <div class="hp" aria-hidden="true">
-                    <label>
-                        <span>اترك هذا الحقل فارغًا</span>
-                        <input name="website" type="text" tabindex="-1" autocomplete="off" value="">
-                    </label>
-                </div>
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path
+                                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+                        </svg>
+                        <div>
+                            <strong>ساعات العمل</strong>
+                            <p>{{ $business['opening_hours_ar'] }}</p>
+                        </div>
+                    </div>
 
-                <div class="form-grid">
-                    <label class="field">
-                        <span class="label">الاسم (اختياري)</span>
-                        <input name="name" type="text" autocomplete="name" value="{{ old('name') }}">
-                    </label>
-
-                    <label class="field">
-                        <span class="label">رقم الجوال</span>
-                        <input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="05XXXXXXXX" value="{{ old('phone') }}" required>
-                    </label>
-
-                    <label class="field">
-                        <span class="label">الخدمة (اختياري)</span>
-                        <select name="service_slug">
-                            <option value="">اختر الخدمة</option>
-                            @foreach ($services as $slug => $service)
-                                <option value="{{ $slug }}" @selected(old('service_slug') === $slug)>{{ $service['name'] }}</option>
-                            @endforeach
-                        </select>
-                    </label>
-
-                    <label class="field">
-                        <span class="label">الحي (اختياري)</span>
-                        <select name="area_slug">
-                            <option value="">اختر الحي</option>
-                            @foreach ($areas as $slug => $area)
-                                <option value="{{ $slug }}" @selected(old('area_slug') === $slug)>{{ $area['name'] }}</option>
-                            @endforeach
-                        </select>
-                    </label>
-
-                    <label class="field field-wide">
-                        <span class="label">الرسالة (اختياري)</span>
-                        <textarea name="message" rows="4" placeholder="مثال: عندي كنب + طاولة + غرفة نوم، وأحتاج تقييم اليوم">{{ old('message') }}</textarea>
-                    </label>
+                    <div class="contact-actions">
+                        <x-cta size="lg" />
+                    </div>
                 </div>
 
-                <button class="btn btn-primary btn-lg" type="submit">إرسال</button>
-                <div class="form-note">
-                    بالضغط على “إرسال” أنت توافق على <a class="link" href="{{ route('legal.privacy') }}">سياسة الخصوصية</a>.
+                <div class="contact-form">
+                    <h2>أرسل رسالة</h2>
+                    <form action="#" method="POST" class="form">
+                        @csrf
+                        <div class="form-group">
+                            <label for="name">الاسم</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">رقم الجوال</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">الرسالة</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">إرسال</button>
+                        <p class="form-note">* هذا النموذج للعرض فقط. للتواصل السريع، استخدم أزرار الاتصال أو الواتساب
+                            أعلاه.</p>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </section>
+
+    @if ($business['map_embed_src'])
+        <section class="alt">
+            <div class="container">
+                <h2>موقعنا</h2>
+                <div class="map-container">
+                    <iframe src="{{ $business['map_embed_src'] }}" width="100%" height="400" style="border:0;"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="موقعنا على الخريطة">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    @endif
 @endsection

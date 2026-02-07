@@ -2,61 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use App\Support\Template;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ServiceController extends Controller
 {
     public function index(): View
     {
+        $services = config('services');
         $business = config('business');
-        $services = config('services', []);
 
         $seo = [
-            'title' => "خدمات شراء المستعمل {$business['city']} | {$business['brand_name']}",
-            'description' => "تعرّف على خدماتنا لشراء الأثاث والعفش والمكيفات والأجهزة ومعدات المطاعم والسكراب في {$business['city']}. تواصل الآن لتقييم مجاني.",
+            'title' => 'خدماتنا | شراء أثاث ومكيفات وأجهزة مستعملة بالرياض',
+            'description' => 'نقدم خدمات شراء الأثاث المستعمل والمكيفات والأجهزة الكهربائية ومعدات المطاعم في الرياض. تقييم مجاني ودفع فوري.',
         ];
 
-        return view('pages.services.index', [
-            'seo' => $seo,
-            'services' => $services,
-        ]);
+        return view('pages.services.index', compact('services', 'business', 'seo'));
     }
 
-    public function show(Request $request, string $serviceSlug): View
+    public function show(string $serviceSlug): View
     {
-        $service = config("services.$serviceSlug");
+        $services = config('services');
+        $service = $services[$serviceSlug] ?? null;
 
-        abort_if($service === null, 404);
-
-        $business = config('business');
-
-        $vars = [
-            'brand' => $business['brand_name'],
-            'city' => $business['city'],
-        ];
-
-        $seo = [
-            'title' => Template::render((string) ($service['meta']['title'] ?? ''), $vars),
-            'description' => Template::render((string) ($service['meta']['description'] ?? ''), $vars),
-        ];
-
-        $related = [];
-        foreach (($service['related_slugs'] ?? []) as $relatedSlug) {
-            $relatedService = config("services.$relatedSlug");
-            if ($relatedService !== null) {
-                $related[$relatedSlug] = $relatedService;
-            }
+        if (!$service) {
+            abort(404);
         }
 
-        return view('pages.services.show', [
-            'seo' => $seo,
-            'service' => $service,
-            'serviceSlug' => $serviceSlug,
-            'services' => config('services', []),
-            'relatedServices' => $related,
-        ]);
+        $business = config('business');
+        $site = config('site');
+
+        $seo = [
+            'title' => $service['meta']['title'] ?? $service['name'],
+            'description' => $service['meta']['description'] ?? $service['excerpt'],
+            'canonical' => url()->current(),
+        ];
+
+        // Get related services
+        $relatedServices = collect($service['related_slugs'] ?? [])
+            ->map(fn($slug) => isset($services[$slug]) ? ['slug' => $slug, ...$services[$slug]] : null)
+            ->filter();
+
+        return view('pages.services.show', compact('service', 'serviceSlug', 'business', 'site', 'seo', 'relatedServices'));
     }
 }
-

@@ -1,24 +1,18 @@
-@props([
-    'faqs' => [],
-    'vars' => [],
-])
+@props(['faqs'])
 
-@php
-    $vars = array_merge(['brand' => $business['brand_name'], 'city' => $business['city']], $vars);
-@endphp
-
-<div class="faq">
-    @foreach ($faqs as $item)
-        @php
-            $question = \App\Support\Template::render((string) ($item['q'] ?? ''), $vars);
-            $answer = \App\Support\Template::render((string) ($item['a'] ?? ''), $vars);
-        @endphp
-        <details class="faq-item">
-            <summary class="faq-q">{{ $question }}</summary>
-            <div class="faq-a">
-                <p>{{ $answer }}</p>
+<div class="faq-accordion">
+    @foreach ($faqs as $index => $faq)
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-{{ $index }}">
+                <span>{{ $faq['q'] }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </button>
+            <div class="faq-answer" id="faq-{{ $index }}" hidden>
+                <p>{{ $faq['a'] }}</p>
             </div>
-        </details>
+        </div>
     @endforeach
 </div>
-

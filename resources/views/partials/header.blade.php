@@ -4,9 +4,12 @@
 @endphp
 
 <header class="header">
+
+
     <div class="container header-inner">
-        <a href="{{ route('home') }}" class="logo" aria-label="الصفحة الرئيسية">
-            <span class="logo-text">{{ $business['brand_name'] }}</span>
+        <a href="{{ route('home') }}" class="logo-wrapper" aria-label="الرئيسية">
+            <img src="{{ asset('assets/img/logo.png') }}" alt="{{ $business['brand_name'] }}" width="60" height="60"
+                class="header-logo-img">
         </a>
 
         <nav class="nav-desktop" aria-label="القائمة الرئيسية">

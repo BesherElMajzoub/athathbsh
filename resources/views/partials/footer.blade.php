@@ -74,8 +74,17 @@
                     <span>{{ $business['opening_hours_ar'] }}</span>
                 </div>
                 <x-cta size="sm" />
+
+                <div class="footer-map-small">
+                    <iframe src="{{ $business['map_embed_src'] ?? config('business.map_embed_src') }}"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="موقع {{ $business['brand_name'] }}">
+                    </iframe>
+                </div>
             </div>
         </div>
+
+
 
         <div class="footer-bottom">
             <p>© {{ date('Y') }} {{ $business['brand_name'] }}. جميع الحقوق محفوظة.</p>

@@ -12,12 +12,36 @@
 @endpush
 
 @section('content')
-    <section class="hero hero-service">
-        <div class="container">
-            <span class="eyebrow">{{ $service['hero']['eyebrow'] ?? 'خدماتنا' }}</span>
-            <h1>{{ $service['h1'] }}</h1>
-            <p class="lead">{{ $service['hero']['lead'] ?? $service['excerpt'] }}</p>
-            <x-cta size="lg" />
+    @php
+        $serviceImages = [
+            'buy-used-furniture' => 'Buying-home-furniture_10_11zon.webp',
+            'buy-air-conditioners' => 'Used-air-conditioners_27_11zon.webp',
+            'buy-restaurant-equipment' => 'Buying-restaurant-equipment_14_11zon.webp',
+            'buy-cafe-equipment' => 'Buying-restaurant-equipment_14_11zon.webp', // Reuse restaurant img or find cafe one
+            'buy-used-appliances' => 'Buying-used-refrigerators_17_11zon.webp',
+            'buy-hotel-furniture' => 'Buying-hotel-furniture_11_11zon.webp',
+            'buy-warehouse-clearance' => 'move furntur_21_11zon.webp', // Closest match
+            'buy-used-carpets' => 'Buying-used-bedrooms_15_11zon.webp', // Placeholder/Fallback
+            'buy-palace-furniture' => 'Buying-palace-furniture_12_11zon.webp',
+        ];
+
+        // Default image if slug not found
+        $heroImage = $serviceImages[$serviceSlug] ?? 'logo.png';
+    @endphp
+
+    <section class="hero hero-service" style="padding-bottom: 0;">
+        <div class="container mobile-reverse-grid">
+            <div class="hero-content">
+                <span class="eyebrow">{{ $service['hero']['eyebrow'] ?? 'خدماتنا' }}</span>
+                <h1>{{ $service['h1'] }}</h1>
+                <p class="lead">{{ $service['hero']['lead'] ?? $service['excerpt'] }}</p>
+                <x-cta size="lg" />
+            </div>
+
+            <div class="hero-image-container">
+                <img src="{{ asset('assets/img/' . $heroImage) }}" alt="{{ $service['h1'] }}" loading="lazy" width="600"
+                    height="400" class="service-hero-img">
+            </div>
         </div>
     </section>
 
@@ -78,7 +102,8 @@
         <div class="container">
             <h2>كيف نشتري {{ $service['name'] }}؟</h2>
             <ol class="steps">
-                <li>تواصل معنا عبر الواتساب أو الاتصال وأرسل صور {{ $service['name'] }} + موقعك في {{ $business['city'] }}.
+                <li>تواصل معنا عبر الواتساب أو الاتصال وأرسل صور {{ $service['name'] }} + موقعك في
+                    {{ $business['city'] }}.
                 </li>
                 <li>سنقوم بتقييم مبدئي للسعر وتحديد موعد للمعاينة إذا لزم الأمر.</li>
                 <li>الاتفاق على السعر النهائي وموعد النقل المناسب لك.</li>

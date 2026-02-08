@@ -957,8 +957,26 @@ a.chip:hover {
 
 @media (min-width: 992px) {
     .footer-grid {
-        grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+        /* Adjusted grid to give map column (last one) more space */
+        grid-template-columns: 2fr 0.8fr 0.8fr 0.8fr 1.6fr;
     }
+}
+
+.footer-map-small {
+    margin-top: var(--spacing-lg);
+    width: 100%;
+    height: 200px; /* Fixed height for small clean look */
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: var(--shadow-sm);
+}
+
+.footer-map-small iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 .footer-brand .logo {
@@ -1234,3 +1252,165 @@ body {
     padding-top: var(--spacing-xl);
 }
 
+/* =========================================
+   NEW ADDS: Top Bar & Visual Services
+   ========================================= */
+
+/* Top Bar */
+.top-bar {
+    background: #f8f9fa;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 0.5rem 0;
+}
+
+.top-bar-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-bar-logo img {
+    display: block;
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+@media (min-width: 992px) {
+    .top-bar-inner {
+        justify-content: flex-start;
+    }
+}
+
+/* Service Visual Grid */
+.services-visual-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 1rem;
+}
+
+@media (min-width: 600px) {
+    .services-visual-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .services-visual-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.service-visual-card {
+    display: block;
+    background: white;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--color-border);
+}
+
+.service-visual-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+}
+
+.service-img-wrapper {
+    position: relative;
+    padding-top: 66.66%; /* 3:2 Aspect Ratio */
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.service-img-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.service-visual-card:hover .service-img-wrapper img {
+    transform: scale(1.05);
+}
+
+.service-content {
+    padding: 1.25rem;
+    text-align: right;
+}
+
+.service-content h3 {
+    color: var(--color-primary);
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.service-content p {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    margin: 0;
+}
+/* Header Logo */
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+@media (max-width: 480px) {
+    .header-logo-img {
+        height: 40px;
+    }
+}
+
+/* Service Hero with Image side-by-side */
+.hero-service .container {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+}
+
+@media (min-width: 992px) {
+    .hero-service .container {
+        grid-template-columns: 1fr 1fr;
+        text-align: right;
+    }
+}
+
+.service-hero-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    object-fit: cover;
+    aspect-ratio: 4/3;
+}
+
+/* Mobile: Image below text or above? Usually visual first on mobile is nice, but text is important for SEO/Context.
+   User asked for responsive. Default grid is fine (Content 1st in HTML).
+   If we want image first on mobile:
+*/
+@media (max-width: 991px) {
+    .mobile-reverse-grid {
+        display: flex;
+        flex-direction: column-reverse; /* Image on top? No, usually Title first is better for SEO/Reading. 
+                                           Let's keep standard block stacking: Content then Image? 
+                                           Actually, let's just keep grid auto flow. */
+    }
+    .service-hero-img {
+        margin-top: 1rem;
+    }
+}

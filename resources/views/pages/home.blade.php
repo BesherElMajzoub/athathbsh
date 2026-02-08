@@ -62,7 +62,79 @@
             <p class="section-lead">
                 نشتري جميع أنواع الأثاث والأجهزة المستعملة في {{ $business['city'] }} مع تقييم مجاني وخدمة نقل ودفع فوري.
             </p>
-            <x-service-grid :services="$services" />
+            <div class="services-visual-grid">
+                {{-- Service 1: Furniture --}}
+                <a href="{{ url('/services/buy-used-furniture') }}" class="service-visual-card">
+                    <div class="service-img-wrapper">
+                        <img src="{{ asset('assets/img/Buying-home-furniture_10_11zon.webp') }}"
+                            alt="شراء أثاث مستعمل في جدة" width="400" height="300" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>شراء أثاث مستعمل</h3>
+                        <p>نشتري جميع غرف النوم والكنب والمجالس بأفضل الأسعار.</p>
+                    </div>
+                </a>
+
+                {{-- Service 2: Air Conditioners --}}
+                <a href="{{ url('/services/buy-air-conditioners') }}" class="service-visual-card">
+                    <div class="service-img-wrapper">
+                        <img src="{{ asset('assets/img/Used-air-conditioners_27_11zon.webp') }}"
+                            alt="شراء مكيفات مستعملة في جدة" width="400" height="300" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>شراء مكيفات</h3>
+                        <p>نشتري التكييف الشباك والسبليت والمركزي بجميع حالاته.</p>
+                    </div>
+                </a>
+
+                {{-- Service 3: Appliances --}}
+                <a href="{{ url('/services/buy-used-appliances') }}" class="service-visual-card">
+                    <div class="service-img-wrapper">
+                        <img src="{{ asset('assets/img/Buying-used-refrigerators_17_11zon.webp') }}"
+                            alt="شراء أجهزة كهربائية مستعملة" width="400" height="300" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>أجهزة كهربائية</h3>
+                        <p>شراء ثلاجات، غسالات، وأفران مستعملة ونقل فوري.</p>
+                    </div>
+                </a>
+
+                {{-- Service 4: Restaurant Equipment --}}
+                <a href="{{ url('/services/buy-restaurant-equipment') }}" class="service-visual-card">
+                    <div class="service-img-wrapper">
+                        <img src="{{ asset('assets/img/Buying-restaurant-equipment_14_11zon.webp') }}"
+                            alt="شراء معدات مطاعم مستعملة جدة" width="400" height="300" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>معدات مطاعم</h3>
+                        <p>نشتري معدات المطاعم والكافيهات وأدوات المطبخ كاملة.</p>
+                    </div>
+                </a>
+
+                {{-- Service 5: Palace Furniture --}}
+                <a href="{{ url('/services/buy-palace-furniture') }}" class="service-visual-card">
+                    <div class="service-img-wrapper">
+                        <img src="{{ asset('assets/img/Buying-palace-furniture_12_11zon.webp') }}"
+                            alt="شراء أثاث قصور وفلل" width="400" height="300" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>أثاث القصور</h3>
+                        <p>خدمة خاصة لشراء أثاث الفلل والقصور والفنادق.</p>
+                    </div>
+                </a>
+
+                {{-- Service 6: Hotel Furniture --}}
+                <a href="{{ url('/services/buy-hotel-furniture') }}" class="service-visual-card">
+                    <div class="service-img-wrapper">
+                        <img src="{{ asset('assets/img/Buying-hotel-furniture_11_11zon.webp') }}"
+                            alt="شراء أثاث فنادق وشقق مفروشة" width="400" height="300" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>أثاث فنادق</h3>
+                        <p>نشتري أثاث الفنادق والشقق المفروشة وتصفية المستودعات.</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </section>
 

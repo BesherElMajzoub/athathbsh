@@ -61,3 +61,9 @@ Route::get('/robots.txt', [RobotsController::class, 'index'])->name('robots');
 // Legal
 Route::get('/privacy-policy', [LegalController::class, 'privacy'])->name('legal.privacy');
 Route::get('/terms', [LegalController::class, 'terms'])->name('legal.terms');
+
+Route::fallback(function () {
+    return response()
+        ->view('errors.404', [], 404)
+        ->header('X-Robots-Tag', 'noindex, nofollow');
+});

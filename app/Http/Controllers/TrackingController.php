@@ -15,7 +15,7 @@ class TrackingController extends Controller
         $number = config('site.whatsapp_number_international');
         $message = urlencode(config('site.whatsapp_default_message'));
 
-        return redirect()->away("https://wa.me/{$number}?text={$message}");
+        return redirect()->away("https://api.whatsapp.com/send?phone={$number}&text={$message}");
     }
 
     public function call(Request $request): RedirectResponse

@@ -10,6 +10,6 @@ return [
     'country_code' => env('SITE_COUNTRY_CODE', '966'),
     'contact_name' => env('SITE_CONTACT_NAME', 'أبو بيان'),
     'google_map_url' => env('SITE_GOOGLE_MAP_URL', 'https://maps.app.goo.gl/uuEaJ5v91AfWCXYq6'),
-    'youtube_url' => env('SITE_YOUTUBE_URL', null),
+    'youtube_url' => env('SITE_YOUTUBE_URL', "https://www.youtube.com/watch?v=FHcyECYrHHE"),
     'admin_token' => env('ADMIN_DASHBOARD_TOKEN', null),
 ];

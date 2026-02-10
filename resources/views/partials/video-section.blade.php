@@ -16,7 +16,7 @@
         <div class="video-card">
             @if ($videoId)
                 <div class="video-embed">
-                    <iframe width="100%" height="500" src="https://www.youtube.com/embed/{{ $videoId }}"
+                    <iframe width="100%" height="500" src="https://www.youtube.com/embed/FHcyECYrHHE"
                         title="فيديو شراء أثاث مستعمل جدة" frameborder="0" loading="lazy"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>

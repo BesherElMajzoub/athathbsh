@@ -8,8 +8,8 @@
 
     <div class="container header-inner">
         <a href="{{ route('home') }}" class="logo-wrapper" aria-label="الرئيسية">
-            <img src="{{ asset('assets/img/logo/logo.svg') }}" alt="{{ $business['brand_name'] }}" width="60"
-                height="60" class="header-logo-img">
+            <img src="{{ asset('assets/img/logo.svg') }}" alt="{{ $business['brand_name'] }}" width="60" height="60"
+                class="header-logo-img">
         </a>
 
         <nav class="nav-desktop" aria-label="القائمة الرئيسية">

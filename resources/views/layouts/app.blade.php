@@ -43,7 +43,18 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     {{-- Favicon --}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/img/logo.svg') }}">
+    <link rel="apple-touch-icon" href="{{ asset('assets/img/logo.svg') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/logo.svg') }}">
+
+    <script type="application/ld+json">
+        {!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            'url' => url('/'),
+            'logo' => asset('assets/img/logo.svg')
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+    </script>
 
     {{-- Schema.org Markup --}}
     @stack('schema')

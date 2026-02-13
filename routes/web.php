@@ -16,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Standalone Landing Pages
+Route::get('/buying-used-furniture-jeddah', [ServiceController::class, 'buyingUsedFurnitureJeddah'])->name('services.buying-used-furniture-jeddah');
+
 // Services
 Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
-Route::get('/services/buy-used-furniture', [ServiceController::class, 'show'])->name('services.furniture')->defaults('serviceSlug', 'buy-used-furniture');
+Route::get('/services/buy-used-furniture', [ServiceController::class, 'buyingUsedFurnitureJeddah'])->name('services.furniture')->defaults('serviceSlug', 'buy-used-furniture');
 Route::get('/services/buy-air-conditioners', [ServiceController::class, 'show'])->name('services.ac')->defaults('serviceSlug', 'buy-air-conditioners');
 Route::get('/services/buy-restaurant-equipment', [ServiceController::class, 'show'])->name('services.restaurant')->defaults('serviceSlug', 'buy-restaurant-equipment');
 Route::get('/services/buy-cafe-equipment', [ServiceController::class, 'show'])->name('services.cafe')->defaults('serviceSlug', 'buy-cafe-equipment');

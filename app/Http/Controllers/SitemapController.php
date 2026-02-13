@@ -11,6 +11,7 @@ class SitemapController extends Controller
         $urls = collect();
 
         // Static pages
+        $urls->push(['loc' => route('services.buying-used-furniture-jeddah'), 'priority' => '0.9', 'changefreq' => 'weekly']);
         $urls->push(['loc' => route('home'), 'priority' => '1.0', 'changefreq' => 'weekly']);
         $urls->push(['loc' => route('services.index'), 'priority' => '0.9', 'changefreq' => 'weekly']);
         $urls->push(['loc' => route('about'), 'priority' => '0.7', 'changefreq' => 'monthly']);

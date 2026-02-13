@@ -44,4 +44,20 @@ class ServiceController extends Controller
 
         return view('pages.services.show', compact('service', 'serviceSlug', 'business', 'site', 'seo', 'relatedServices'));
     }
+
+    public function buyingUsedFurnitureJeddah(): View
+    {
+        $business = config('business');
+        $site = config('site');
+
+        $seo = [
+            'title' => 'شراء اثاث مستعمل بجدة | نشتري الاثاث المستعمل بأعلى سعر ودفع فوري',
+            'description' => 'شركة شراء اثاث مستعمل بجدة تشتري جميع انواع الاثاث المستعمل، غرف نوم، كنب، مكيفات، مطابخ. تقييم مجاني ونقل فوري. اتصل الآن بأفضل محلات شراء الاثاث المستعمل.',
+            'keywords' => 'شراء اثاث مستعمل بجدة, شراء الاثاث المستعمل, ارقام شراء الاثاث المستعمل, حقين شراء اثاث مستعمل, نشتري اثاث مستعمل',
+            'canonical' => url()->current(),
+            'image' => asset('assets/img/Buying-home-furniture_10_11zon.webp'),
+        ];
+
+        return view('pages.buying-used-furniture-jeddah', compact('business', 'site', 'seo'));
+    }
 }

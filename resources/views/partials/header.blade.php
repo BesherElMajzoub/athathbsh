@@ -8,7 +8,7 @@
 
     <div class="container header-inner">
         <a href="{{ route('home') }}" class="logo-wrapper" aria-label="الرئيسية">
-            <img src="{{ asset('assets/img/logo.png') }}" alt="{{ $business['brand_name'] }}" width="60" height="60"
+            <img src="{{ asset('assets/img/logo.svg') }}" alt="{{ $business['brand_name'] }}" width="60" height="60"
                 class="header-logo-img">
         </a>
 

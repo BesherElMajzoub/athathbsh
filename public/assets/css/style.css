@@ -2,6 +2,31 @@
    SITE STYLES - Arabic RTL Landing Page
    ======================================== */
 
+/* Local Fonts - Tajawal */
+@font-face {
+    font-family: 'Tajawal';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/tajawal-v12-arabic_latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Tajawal';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../fonts/tajawal-v12-arabic_latin-500.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Tajawal';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/tajawal-v12-arabic_latin-700.woff2') format('woff2');
+}
+
 :root {
     --color-primary: #0b6e4f;
     --color-primary-dark: #065a40;
@@ -15,7 +40,7 @@
     --color-success: #25d366;
     --color-error: #dc3545;
     
-    --font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-size-base: 16px;
     --line-height-base: 1.7;
     
@@ -189,12 +214,12 @@ a:hover {
     font-size: 0.875rem;
 }
 
-/* Navbar CTA Pulse Animation */
+/* Navbar CTA Pulse Animation - Performance Optimized */
 @keyframes pulse-shadow {
     0% {
         box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
     }
-    10% {
+    70% {
         box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
     }
     100% {
@@ -203,15 +228,88 @@ a:hover {
 }
 
 .navbar-cta-pulse {
-    animation: pulse-shadow 10s infinite;
+    animation: pulse-shadow 2s infinite;
+    will-change: box-shadow;
 }
 
 .navbar-cta-pulse:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Safe transform */
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* CTA Buttons */
+/* Lite YouTube Embed */
+lite-youtube {
+    background-color: #000;
+    position: relative;
+    display: block;
+    contain: content;
+    background-position: center center;
+    background-size: cover;
+    cursor: pointer;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+lite-youtube::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQrAMAgFj0pH7W09j9639y/x1s3250K11IeQED6+g4hYQ0R0i4h4h4g4u4i4uom4u4m4vIm4vYu4v4u4wIm4wYm4w4m4xIm4xYm4x4m4yIm4yYm4y4m4zIm4zYm4z4m40Im40Ym404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404n4AN9r0t0c7h7mAAAAAElFTkSuQmCC');
+    background-position: top;
+    background-repeat: repeat-x;
+    height: 60px;
+    padding-bottom: 50px;
+    width: 100%;
+    transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+lite-youtube::after {
+    content: "";
+    display: block;
+    padding-bottom: calc(100% / (16 / 9));
+}
+
+lite-youtube > iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+}
+
+lite-youtube > .lty-playbtn {
+    width: 68px;
+    height: 48px;
+    position: absolute;
+    cursor: pointer;
+    transform: translate3d(-50%, -50%, 0);
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    background-color: transparent;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24 27 14v20" fill="white"/></svg>');
+    filter: grayscale(100%);
+    transition: filter .1s cubic-bezier(0, 0, 0.2, 1);
+    border: none;
+}
+
+lite-youtube:hover > .lty-playbtn,
+lite-youtube .lty-playbtn:focus {
+    filter: none;
+}
+
+lite-youtube.lyt-activated {
+    cursor: unset;
+}
+lite-youtube.lyt-activated::before,
+lite-youtube.lyt-activated .lty-playbtn {
+    opacity: 0;
+    pointer-events: none;
+}
+
 .cta-buttons {
     display: flex;
     gap: var(--spacing-md);

@@ -33,13 +33,12 @@
     @endif
 
     {{-- Preconnect for performance --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    {{-- Fonts --}}
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+
 
     {{-- Styles --}}
+    <link rel="preload" as="style" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     {{-- Favicon --}}

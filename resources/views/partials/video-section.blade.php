@@ -1,5 +1,5 @@
 @php
-    $youtubeUrl = 'https://www.youtube.com/watch?v=FHcyECYrHHE';
+    $youtubeUrl = 'https://www.youtube.com/watch?v=-P73XwPrGGw';
 
     // تحويل أي رابط يوتيوب إلى embed
     parse_str(parse_url($youtubeUrl, PHP_URL_QUERY), $ytParams);

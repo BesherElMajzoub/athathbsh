@@ -12,6 +12,9 @@
     <meta name="description" content="{{ $seo['description'] ?? '' }}">
     <meta name="keywords" content="{{ $seo['keywords'] ?? 'شراء أثاث مستعمل, جدة, شراء مكيفات, شراء اجهزة كهربائية' }}">
     <link rel="canonical" href="{{ $seo['canonical'] ?? url()->current() }}">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     {{-- Open Graph / Facebook --}}
     <meta property="og:locale" content="ar_SA">

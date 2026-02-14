@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'site_name_ar' => env('SITE_NAME_AR', 'شراء أثاث مستعمل بجدة'),
+    'site_name_ar' => env('SITE_NAME_AR', 'شراءاثاث مستعمل فورا'),
     'phone' => env('SITE_PHONE', '0544707442'),
     'phone_display' => env('SITE_PHONE_DISPLAY', '0544707442'),
     'whatsapp_number_international' => env('SITE_WHATSAPP_INTERNATIONAL', '966544707442'),

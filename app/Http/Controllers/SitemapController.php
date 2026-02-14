@@ -2,28 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
 
 class SitemapController extends Controller
 {
     public function index(): Response
     {
         $today = now()->toDateString();
-        $urls = collect();
 
-        // 1. Static Pages
-        $urls->push(['loc' => route('home'), 'priority' => '1.0', 'changefreq' => 'daily', 'lastmod' => $today]);
-        $urls->push(['loc' => route('services.index'), 'priority' => '0.9', 'changefreq' => 'weekly', 'lastmod' => $today]);
-        $urls->push(['loc' => route('about'), 'priority' => '0.7', 'changefreq' => 'monthly', 'lastmod' => $today]);
-        $urls->push(['loc' => route('contact.show'), 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => $today]);
-        $urls->push(['loc' => route('faq'), 'priority' => '0.6', 'changefreq' => 'monthly', 'lastmod' => $today]);
-        $urls->push(['loc' => route('location'), 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => $today]);
-        $urls->push(['loc' => route('legal.privacy'), 'priority' => '0.3', 'changefreq' => 'yearly', 'lastmod' => $today]);
-        $urls->push(['loc' => route('legal.terms'), 'priority' => '0.3', 'changefreq' => 'yearly', 'lastmod' => $today]);
+        $routeNames = [
+            // Static
+            'home',
+            'services.index',
+            'about',
+            'contact.show',
+            'faq',
+            'location',
+            'legal.privacy',
+            'legal.terms',
 
-        // 2. Service Pages (Direct Routes)
-        $services = [
+            // Services (canonical only)
             'services.furniture',
             'services.ac',
             'services.restaurant',
@@ -35,28 +34,65 @@ class SitemapController extends Controller
             'services.palace',
             'services.scrap',
             'services.afsh',
-        ];
 
-        foreach ($services as $serviceRoute) {
-            $urls->push(['loc' => route($serviceRoute), 'priority' => '0.9', 'changefreq' => 'weekly', 'lastmod' => $today]);
-        }
-
-        // 3. Area Pages
-        $areas = [
+            // Areas
             'areas.north',
             'areas.south',
             'areas.east',
             'areas.west',
         ];
 
-        foreach ($areas as $areaRoute) {
-            $urls->push(['loc' => route($areaRoute), 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => $today]);
+        $urls = collect($routeNames)
+            ->map(function ($routeName) use ($today) {
+                return [
+                    'loc' => route($routeName),
+                    'priority' => $this->priority($routeName),
+                    'changefreq' => $this->changefreq($routeName),
+                    'lastmod' => $today,
+                ];
+            })
+
+            // 🚨 Safety Filter: NEVER allow old redirected URLs
+            ->filter(function ($url) {
+                return !str_contains($url['loc'], '/services/buy-');
+            })
+
+            ->values();
+
+        // 🔍 DEBUG MODE (local only)
+        if (app()->environment('local') && request()->query('debug') == 1) {
+            return response()->json($urls);
         }
 
-        // Generate XML
-        $content = view('seo.sitemap', ['urls' => $urls])->render();
+        return response()
+            ->view('seo.sitemap', ['urls' => $urls])
+            ->header('Content-Type', 'application/xml; charset=UTF-8');
+    }
 
-        return response($content, 200)
-            ->header('Content-Type', 'application/xml; charset=utf-8');
+    private function changefreq(string $route): string
+    {
+        return match ($route) {
+            'home' => 'daily',
+            'services.index' => 'weekly',
+            'services.furniture',
+            'services.ac',
+            'services.appliances',
+            'services.scrap',
+            'services.afsh' => 'weekly',
+            default => 'monthly',
+        };
+    }
+
+    private function priority(string $route): string
+    {
+        return match ($route) {
+            'home' => '1.0',
+            'services.index' => '0.9',
+            'services.furniture',
+            'services.ac',
+            'services.scrap',
+            'services.afsh' => '0.9',
+            default => '0.6',
+        };
     }
 }

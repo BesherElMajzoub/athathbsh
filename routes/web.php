@@ -17,19 +17,32 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Standalone Landing Pages
-Route::get('/buying-used-furniture-jeddah', [ServiceController::class, 'buyingUsedFurnitureJeddah'])->name('services.buying-used-furniture-jeddah');
 
 // Services
 Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
-Route::get('/services/buy-used-furniture', [ServiceController::class, 'buyingUsedFurnitureJeddah'])->name('services.furniture')->defaults('serviceSlug', 'buy-used-furniture');
-Route::get('/services/buy-air-conditioners', [ServiceController::class, 'show'])->name('services.ac')->defaults('serviceSlug', 'buy-air-conditioners');
-Route::get('/services/buy-restaurant-equipment', [ServiceController::class, 'show'])->name('services.restaurant')->defaults('serviceSlug', 'buy-restaurant-equipment');
-Route::get('/services/buy-cafe-equipment', [ServiceController::class, 'show'])->name('services.cafe')->defaults('serviceSlug', 'buy-cafe-equipment');
-Route::get('/services/buy-used-appliances', [ServiceController::class, 'show'])->name('services.appliances')->defaults('serviceSlug', 'buy-used-appliances');
-Route::get('/services/buy-hotel-furniture', [ServiceController::class, 'show'])->name('services.hotel')->defaults('serviceSlug', 'buy-hotel-furniture');
-Route::get('/services/buy-warehouse-clearance', [ServiceController::class, 'show'])->name('services.warehouse')->defaults('serviceSlug', 'buy-warehouse-clearance');
-Route::get('/services/buy-used-carpets', [ServiceController::class, 'show'])->name('services.carpets')->defaults('serviceSlug', 'buy-used-carpets');
-Route::get('/services/buy-palace-furniture', [ServiceController::class, 'show'])->name('services.palace')->defaults('serviceSlug', 'buy-palace-furniture');
+// Dedicated Service Pages
+Route::get('/buy-used-furniture', fn() => view('services.buy-used-furniture'))->name('services.furniture');
+Route::get('/buy-air-conditioners', fn() => view('services.buy-air-conditioners'))->name('services.ac');
+Route::get('/buy-restaurant-equipment', fn() => view('services.buy-restaurant-equipment'))->name('services.restaurant');
+Route::get('/buy-cafe-equipment', fn() => view('services.buy-cafe-equipment'))->name('services.cafe');
+Route::get('/buy-used-appliances', fn() => view('services.buy-used-appliances'))->name('services.appliances');
+Route::get('/buy-hotel-furniture', fn() => view('services.buy-hotel-furniture'))->name('services.hotel');
+Route::get('/buy-warehouse-clearance', fn() => view('services.buy-warehouse-clearance'))->name('services.warehouse');
+Route::get('/buy-used-carpets', fn() => view('services.buy-used-carpets'))->name('services.carpets');
+Route::get('/buy-palace-furniture', fn() => view('services.buy-palace-furniture'))->name('services.palace');
+Route::get('/buy-scrap-jeddah', fn() => view('services.buy-scrap-jeddah'))->name('services.scrap');
+Route::get('/buy-afsh-jeddah', fn() => view('services.buy-afsh-jeddah'))->name('services.afsh');
+
+// Redirects for Old Routes
+Route::redirect('/services/buy-used-furniture', '/buy-used-furniture', 301);
+Route::redirect('/services/buy-air-conditioners', '/buy-air-conditioners', 301);
+Route::redirect('/services/buy-restaurant-equipment', '/buy-restaurant-equipment', 301);
+Route::redirect('/services/buy-cafe-equipment', '/buy-cafe-equipment', 301);
+Route::redirect('/services/buy-used-appliances', '/buy-used-appliances', 301);
+Route::redirect('/services/buy-hotel-furniture', '/buy-hotel-furniture', 301);
+Route::redirect('/services/buy-warehouse-clearance', '/buy-warehouse-clearance', 301);
+Route::redirect('/services/buy-used-carpets', '/buy-used-carpets', 301);
+Route::redirect('/services/buy-palace-furniture', '/buy-palace-furniture', 301);
 
 // About & Contact
 Route::get('/about', [PageController::class, 'about'])->name('about');

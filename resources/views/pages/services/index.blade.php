@@ -10,7 +10,7 @@
     <section class="hero hero-page">
         <div class="container">
             <h1>خدماتنا</h1>
-            <p class="lead">نشتري جميع أنواع الأثاث والأجهزة المستعملة في الرياض مع تقييم مجاني ودفع فوري</p>
+            <p class="lead">نشتري جميع أنواع الأثاث والأجهزة المستعملة في جدة مع تقييم مجاني ودفع فوري</p>
         </div>
     </section>
 
@@ -25,12 +25,15 @@
                     'buy-used-appliances' => 'services.appliances',
                     'buy-hotel-furniture' => 'services.hotel',
                     'buy-warehouse-clearance' => 'services.warehouse',
+                    'buy-used-carpets' => 'services.carpets',
+                    'buy-palace-furniture' => 'services.palace',
                 ];
             @endphp
             <div class="services-grid">
                 @foreach ($services as $slug => $service)
                     @if (is_array($service) && isset($service['name']))
-                        <a href="{{ route($routeMap[$slug] ?? 'services.index') }}" class="service-card">
+                        <a href="{{ route($routeMap[$slug] ?? 'services.index') }}" class="service-card"
+                            rel="nofollow noopener">
                             <h2>{{ $service['name'] }}</h2>
                             <p>{{ $service['excerpt'] ?? '' }}</p>
                             <span class="card-link">اعرف المزيد ←</span>

@@ -1,7 +1,5 @@
 User-agent: *
-Allow: /
-
 Disallow: /admin/
 Disallow: /t/
 
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://furniture-jeddah.com/sitemap.xml

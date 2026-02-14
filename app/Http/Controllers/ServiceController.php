@@ -21,6 +21,12 @@ class ServiceController extends Controller
 
     public function show(string $serviceSlug): View
     {
+        // Use dedicated blade file if it exists (self-contained with inline data)
+        if (view()->exists("services.{$serviceSlug}")) {
+            return view("services.{$serviceSlug}");
+        }
+
+        // Fall back to dynamic template
         $services = config('services');
         $service = $services[$serviceSlug] ?? null;
 

@@ -29,6 +29,8 @@
                         <li><a href="{{ route('services.warehouse') }}">تفريغ مستودعات</a></li>
                         <li><a href="{{ route('services.carpets') }}">شراء سجاد</a></li>
                         <li><a href="{{ route('services.palace') }}">شراء أثاث قصور</a></li>
+                        <li><a href="{{ route('services.scrap') }}">شراء سكراب</a></li>
+                        <li><a href="{{ route('services.afsh') }}">شراء عفش</a></li>
                     </ul>
                 </li>
                 <li class="nav-dropdown">
@@ -83,6 +85,8 @@
                 <li><a href="{{ route('services.ac') }}">شراء مكيفات</a></li>
                 <li><a href="{{ route('services.carpets') }}">شراء سجاد</a></li>
                 <li><a href="{{ route('services.palace') }}">شراء أثاث قصور</a></li>
+                <li><a href="{{ route('services.scrap') }}">شراء سكراب</a></li>
+                <li><a href="{{ route('services.afsh') }}">شراء عفش</a></li>
                 <li><a href="{{ route('areas.north') }}">شمال جدة</a></li>
                 <li><a href="{{ route('areas.south') }}">جنوب جدة</a></li>
                 <li><a href="{{ route('about') }}">من نحن</a></li>

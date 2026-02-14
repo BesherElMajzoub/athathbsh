@@ -64,7 +64,7 @@
             </p>
             <div class="services-visual-grid">
                 {{-- Service 1: Furniture --}}
-                <a href="{{ url('/services/buy-used-furniture') }}" class="service-visual-card">
+                <a href="{{ route('services.furniture') }}" class="service-visual-card">
                     <div class="service-img-wrapper">
                         <img src="{{ asset('assets/img/Buying-home-furniture_10_11zon.webp') }}"
                             alt="شراء أثاث مستعمل في جدة" width="400" height="300" loading="lazy">
@@ -76,7 +76,7 @@
                 </a>
 
                 {{-- Service 2: Air Conditioners --}}
-                <a href="{{ url('/services/buy-air-conditioners') }}" class="service-visual-card">
+                <a href="{{ route('services.ac') }}" class="service-visual-card">
                     <div class="service-img-wrapper">
                         <img src="{{ asset('assets/img/Used-air-conditioners_27_11zon.webp') }}"
                             alt="شراء مكيفات مستعملة في جدة" width="400" height="300" loading="lazy">
@@ -88,10 +88,10 @@
                 </a>
 
                 {{-- Service 3: Appliances --}}
-                <a href="{{ url('/services/buy-used-appliances') }}" class="service-visual-card">
+                <a href="{{ route('services.appliances') }}" class="service-visual-card">
                     <div class="service-img-wrapper">
                         <img src="{{ asset('assets/img/Buying-used-refrigerators_17_11zon.webp') }}"
-                            alt="شراء أجهزة كهربائية مستعملة" width="400" height="300" loading="lazy">
+                            alt="شراء أجهزة كهربائية مستعملة بجدة" width="400" height="300" loading="lazy">
                     </div>
                     <div class="service-content">
                         <h3>أجهزة كهربائية</h3>
@@ -100,7 +100,7 @@
                 </a>
 
                 {{-- Service 4: Restaurant Equipment --}}
-                <a href="{{ url('/services/buy-restaurant-equipment') }}" class="service-visual-card">
+                <a href="{{ route('services.restaurant') }}" class="service-visual-card">
                     <div class="service-img-wrapper">
                         <img src="{{ asset('assets/img/Buying-restaurant-equipment_14_11zon.webp') }}"
                             alt="شراء معدات مطاعم مستعملة جدة" width="400" height="300" loading="lazy">
@@ -112,10 +112,10 @@
                 </a>
 
                 {{-- Service 5: Palace Furniture --}}
-                <a href="{{ url('/services/buy-palace-furniture') }}" class="service-visual-card">
+                <a href="{{ route('services.palace') }}" class="service-visual-card">
                     <div class="service-img-wrapper">
                         <img src="{{ asset('assets/img/Buying-palace-furniture_12_11zon.webp') }}"
-                            alt="شراء أثاث قصور وفلل" width="400" height="300" loading="lazy">
+                            alt="شراء أثاث قصور وفلل بجدة" width="400" height="300" loading="lazy">
                     </div>
                     <div class="service-content">
                         <h3>أثاث القصور</h3>
@@ -124,14 +124,38 @@
                 </a>
 
                 {{-- Service 6: Hotel Furniture --}}
-                <a href="{{ url('/services/buy-hotel-furniture') }}" class="service-visual-card">
+                <a href="{{ route('services.hotel') }}" class="service-visual-card">
                     <div class="service-img-wrapper">
                         <img src="{{ asset('assets/img/Buying-hotel-furniture_11_11zon.webp') }}"
-                            alt="شراء أثاث فنادق وشقق مفروشة" width="400" height="300" loading="lazy">
+                            alt="شراء أثاث فنادق وشقق مفروشة بجدة" width="400" height="300" loading="lazy">
                     </div>
                     <div class="service-content">
                         <h3>أثاث فنادق</h3>
                         <p>نشتري أثاث الفنادق والشقق المفروشة وتصفية المستودعات.</p>
+                    </div>
+                </a>
+
+                {{-- Service 7: Scrap --}}
+                <a href="{{ route('services.scrap') }}" class="service-visual-card">
+                    <div class="service-img-wrapper">
+                        <img src="{{ asset('assets/img/move furntur_21_11zon.webp') }}" alt="شراء سكراب وخردة بجدة"
+                            width="400" height="300" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>شراء سكراب</h3>
+                        <p>نشتري الحديد والنحاس والألمنيوم والكيابل بأعلى سعر.</p>
+                    </div>
+                </a>
+
+                {{-- Service 8: Afsh (Used Furniture) --}}
+                <a href="{{ route('services.afsh') }}" class="service-visual-card">
+                    <div class="service-img-wrapper">
+                        <img src="{{ asset('assets/img/old furn_22_11zon.webp') }}" alt="شراء عفش مستعمل بجدة"
+                            width="400" height="300" loading="lazy">
+                    </div>
+                    <div class="service-content">
+                        <h3>شراء عفش</h3>
+                        <p>نشتري العفش المستعمل بجميع أنواعه: غرف نوم، كنب، مجالس.</p>
                     </div>
                 </a>
             </div>

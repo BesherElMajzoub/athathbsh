@@ -23,7 +23,8 @@
     {{-- Primary Meta Tags --}}
     <title>{{ $seo['title'] ?? config('site.site_name_ar') }}</title>
     <meta name="description" content="{{ $seo['description'] ?? '' }}">
-    <meta name="keywords" content="{{ $seo['keywords'] ?? شراء اثاث مستعمل جدة, جدة, شراء مكيفات, شراء اجهزة كهربائية' }}">
+    <meta name="keywords"
+        content="{{ $seo['keywords'] ?? 'شراء اثاث مستعمل جدة, جدة, شراء مكيفات, شراء اجهزة كهربائية' }}">
     <link rel="canonical" href="{{ $seo['canonical'] ?? url()->current() }}">
     <link rel="icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">

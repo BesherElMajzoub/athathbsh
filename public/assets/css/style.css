@@ -2,31 +2,33 @@
    SITE STYLES - Arabic RTL Landing Page
    ======================================== */
 
-/* Local Fonts - Tajawal */
+/* =========================
+   Tajawal Font (Production-safe)
+   ========================= */
+
 @font-face {
-    font-family: 'Tajawal';
-    font-style: normal;
+    font-family: "Tajawal";
+    src: url("../fonts/tajawal-v12-arabic_latin-regular.woff2") format("woff2");
     font-weight: 400;
+    font-style: normal;
     font-display: swap;
-    src: url('../fonts/tajawal-v12-arabic_latin-regular.woff2') format('woff2');
 }
 
 @font-face {
-    font-family: 'Tajawal';
-    font-style: normal;
+    font-family: "Tajawal";
+    src: url("../fonts/tajawal-v12-arabic_latin-500.woff2") format("woff2");
     font-weight: 500;
+    font-style: normal;
     font-display: swap;
-    src: url('../fonts/tajawal-v12-arabic_latin-500.woff2') format('woff2');
 }
 
 @font-face {
-    font-family: 'Tajawal';
-    font-style: normal;
+    font-family: "Tajawal";
+    src: url("../fonts/tajawal-v12-arabic_latin-700.woff2") format("woff2");
     font-weight: 700;
+    font-style: normal;
     font-display: swap;
-    src: url('../fonts/tajawal-v12-arabic_latin-700.woff2') format('woff2');
 }
-
 :root {
     --color-primary: #0b6e4f;
     --color-primary-dark: #065a40;
@@ -39,11 +41,13 @@
     --color-border: #e5e5e5;
     --color-success: #25d366;
     --color-error: #dc3545;
-    
-    --font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    --font-family:
+        "Tajawal", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
     --font-size-base: 16px;
     --line-height-base: 1.7;
-    
+
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
@@ -51,22 +55,59 @@
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
     --spacing-3xl: 4rem;
-    
+
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
     --radius-full: 9999px;
-    
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
-    
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
     --max-width: 1200px;
     --header-height: 72px;
 }
 
+html,
+body {
+    font-family:
+        "Tajawal",
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* تأكيد على العناوين والأزرار */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+.btn,
+.nav,
+.header,
+.footer {
+    font-family:
+        "Tajawal",
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+}
+
 /* Reset & Base */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -108,21 +149,38 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-weight: 700;
     line-height: 1.3;
     margin-bottom: var(--spacing-md);
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
+h1 {
+    font-size: 2.5rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.5rem;
+}
+h4 {
+    font-size: 1.25rem;
+}
 
 @media (max-width: 768px) {
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.5rem; }
-    h3 { font-size: 1.25rem; }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    h3 {
+        font-size: 1.25rem;
+    }
 }
 
 p {
@@ -234,7 +292,7 @@ a:hover {
 
 .navbar-cta-pulse:hover {
     transform: scale(1.05); /* Safe transform */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Lite YouTube Embed */
@@ -252,11 +310,11 @@ lite-youtube {
 }
 
 lite-youtube::before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     top: 0;
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQrAMAgFj0pH7W09j9639y/x1s3250K11IeQED6+g4hYQ0R0i4h4h4g4u4i4uom4u4m4vIm4vYu4v4u4wIm4wYm4w4m4xIm4xYm4x4m4yIm4yYm4y4m4zIm4zYm4z4m40Im40Ym404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404n4AN9r0t0c7h7mAAAAAElFTkSuQmCC');
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQrAMAgFj0pH7W09j9639y/x1s3250K11IeQED6+g4hYQ0R0i4h4h4g4u4i4uom4u4m4vIm4vYu4v4u4wIm4wYm4w4m4xIm4xYm4x4m4yIm4yYm4y4m4zIm4zYm4z4m40Im40Ym404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404m404n4AN9r0t0c7h7mAAAAAElFTkSuQmCC");
     background-position: top;
     background-repeat: repeat-x;
     height: 60px;
@@ -292,7 +350,7 @@ lite-youtube > .lty-playbtn {
     background-color: transparent;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24 27 14v20" fill="white"/></svg>');
     filter: grayscale(100%);
-    transition: filter .1s cubic-bezier(0, 0, 0.2, 1);
+    transition: filter 0.1s cubic-bezier(0, 0, 0.2, 1);
     border: none;
 }
 
@@ -500,7 +558,7 @@ lite-youtube.lyt-activated .lty-playbtn {
     gap: var(--spacing-xs);
 }
 .micro-copy span::before {
-    content: '✓';
+    content: "✓";
     color: var(--color-primary);
     font-weight: bold;
 }
@@ -538,7 +596,7 @@ lite-youtube.lyt-activated .lty-playbtn {
     position: relative;
 }
 .panel-list li::before {
-    content: '•';
+    content: "•";
     position: absolute;
     right: 0;
     color: var(--color-primary);
@@ -574,8 +632,19 @@ section.alt {
     box-shadow: var(--shadow-lg);
 }
 
-.video-container iframe {
+.video-embed {
+    width: 100%;
     aspect-ratio: 16 / 9;
+    background: #000;
+}
+
+.video-embed lite-youtube,
+.video-embed iframe {
+    width: 100%;
+    height: 100%;
+    max-width: 100% !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
 }
 
 .video-placeholder {
@@ -712,7 +781,7 @@ section.alt {
     position: relative;
 }
 .check-list li::before {
-    content: '✓';
+    content: "✓";
     position: absolute;
     right: 0;
     color: var(--color-primary);
@@ -783,7 +852,7 @@ section.alt {
     color: var(--color-accent);
 }
 .callout .btn-whatsapp:hover {
-    background: rgba(255,255,255,0.9);
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .callout .btn-call {
@@ -1067,7 +1136,7 @@ a.chip:hover {
     border-radius: var(--radius-md);
     overflow: hidden;
     position: relative;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: var(--shadow-sm);
 }
 
@@ -1085,7 +1154,7 @@ a.chip:hover {
 }
 
 .footer-brand p {
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.875rem;
 }
 
@@ -1105,7 +1174,7 @@ a.chip:hover {
 }
 
 .footer-links a {
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.875rem;
 }
 
@@ -1114,24 +1183,24 @@ a.chip:hover {
 }
 
 .footer-contact .contact-item {
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.875rem;
     margin-bottom: var(--spacing-md);
 }
 
 .footer-contact .contact-item svg {
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: var(--spacing-xl);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: var(--spacing-md);
     font-size: 0.875rem;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .footer-legal {
@@ -1140,7 +1209,7 @@ a.chip:hover {
 }
 
 .footer-legal a {
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .footer-legal a:hover {
@@ -1224,12 +1293,16 @@ a.chip:hover {
 
 /* Hero Service */
 .hero-service {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--color-primary) 0%,
+        var(--color-primary-dark) 100%
+    );
     color: white;
 }
 
 .hero-service .eyebrow {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     color: white;
 }
 
@@ -1238,7 +1311,7 @@ a.chip:hover {
 }
 
 .hero-service .lead {
-    color: rgba(255,255,255,0.9);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* =========================================
@@ -1272,7 +1345,7 @@ a.chip:hover {
     .header-inner {
         gap: var(--spacing-sm);
     }
-    
+
     .nav-toggle {
         width: 48px;
         height: 48px;
@@ -1280,7 +1353,7 @@ a.chip:hover {
         justify-content: center;
         z-index: 1001;
     }
-    
+
     .logo {
         font-size: 1.25rem;
         z-index: 1001; /* Ensure logo is clickable if menu is open? No, menu covers it usually */
@@ -1289,21 +1362,21 @@ a.chip:hover {
     .header-actions {
         z-index: 1001;
     }
-    
+
     /* Ensure no overlap between CTA and Logo on very small screens */
     .btn-sm {
         padding: var(--spacing-xs) var(--spacing-sm);
         font-size: 0.8rem;
     }
-    
-    .btn-whatsapp span, 
+
+    .btn-whatsapp span,
     .btn-call span {
         display: none; /* Hide text on very small screens if needed, or keeping it */
     }
-    
+
     /* Only hide text on very small screens < 380px */
     @media (max-width: 380px) {
-        .btn-whatsapp span, 
+        .btn-whatsapp span,
         .btn-call span {
             display: none;
         }
@@ -1336,12 +1409,26 @@ body {
 
 /* Fix Typography on Mobile */
 @media (max-width: 480px) {
-    h1 { font-size: 1.75rem; }
-    h2 { font-size: 1.5rem; }
-    .hero { padding: var(--spacing-xl) 0; }
-    .btn { width: 100%; justify-content: center; } /* Full width buttons on mobile */
-    .cta-buttons { flex-direction: column; width: 100%; }
-    .header-actions .btn { width: auto; } /* Keep header buttons auto width */
+    h1 {
+        font-size: 1.75rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    .hero {
+        padding: var(--spacing-xl) 0;
+    }
+    .btn {
+        width: 100%;
+        justify-content: center;
+    } /* Full width buttons on mobile */
+    .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    .header-actions .btn {
+        width: auto;
+    } /* Keep header buttons auto width */
 }
 
 /* Mobile Nav Stacking */
@@ -1357,7 +1444,7 @@ body {
 /* Top Bar */
 .top-bar {
     background: #f8f9fa;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     padding: 0.5rem 0;
 }
 
@@ -1407,7 +1494,9 @@ body {
     overflow: hidden;
     box-shadow: var(--shadow-sm);
     text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     border: 1px solid var(--color-border);
 }
 

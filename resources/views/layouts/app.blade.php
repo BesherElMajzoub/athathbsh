@@ -41,7 +41,13 @@
 
 
     {{-- Styles --}}
-    <link rel="preload" as="style" href="{{ asset('assets/css/style.css') }}">
+    <link rel="preload" href="{{ asset('assets/fonts/tajawal-v12-arabic_latin-regular.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ asset('assets/fonts/tajawal-v12-arabic_latin-500.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ asset('assets/fonts/tajawal-v12-arabic_latin-700.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     {{-- Favicon --}}

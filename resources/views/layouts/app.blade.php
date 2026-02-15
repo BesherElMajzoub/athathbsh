@@ -60,6 +60,8 @@
 
     {{-- Schema.org Markup --}}
     @stack('schema')
+
+    @stack('styles')
 </head>
 
 <body>
@@ -77,6 +79,7 @@
 
     {{-- Site JS --}}
     <script src="{{ asset('assets/js/site.js') }}" defer></script>
+    @stack('scripts')
 </body>
 
 </html>

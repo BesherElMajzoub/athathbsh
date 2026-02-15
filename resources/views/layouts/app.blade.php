@@ -7,6 +7,19 @@
     <meta name="format-detection" content="telephone=yes">
     <meta name="theme-color" content="#0b6e4f">
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6N0HW0Q21M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-6N0HW0Q21M');
+    </script>
+
     {{-- Primary Meta Tags --}}
     <title>{{ $seo['title'] ?? config('site.site_name_ar') }}</title>
     <meta name="description" content="{{ $seo['description'] ?? '' }}">

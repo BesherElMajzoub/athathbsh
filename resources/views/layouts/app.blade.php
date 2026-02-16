@@ -7,6 +7,42 @@
     <meta name="format-detection" content="telephone=yes">
     <meta name="theme-color" content="#0b6e4f">
 
+    @php
+        $defaultTitle = 'شراء اثاث مستعمل بجدة | شراء عفش | مطابخ | سكراب بأعلى سعر';
+        $defaultDesc =
+            'شراء اثاث مستعمل بجدة وشراء العفش المستعمل وشراء المطابخ المستعملة وشراء سكراب بأعلى الأسعار. نجيك لموقعك فوراً، معاينة دقيقة، استلام سريع ودفع نقدي مباشر.';
+        $title = $seo['title'] ?? $defaultTitle;
+        $desc = $seo['description'] ?? $defaultDesc;
+        $image = $seo['image'] ?? asset('assets/img/og-image.jpg');
+        $url = $seo['canonical'] ?? url()->current();
+    @endphp
+
+    {{-- Primary Meta Tags --}}
+    <title>{{ $title }}</title>
+    <meta name="description" content="{{ $desc }}">
+    <link rel="canonical" href="{{ $url }}">
+
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+
+    {{-- Open Graph / WhatsApp / Facebook --}}
+    <meta property="og:locale" content="ar_SA">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="شراء اثاث مستعمل بجدة">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $desc }}">
+    <meta property="og:url" content="{{ $url }}">
+    <meta property="og:image" content="{{ $image }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ $desc }}">
+    <meta name="twitter:image" content="{{ $image }}">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6N0HW0Q21M"></script>
     <script>
@@ -16,43 +52,8 @@
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
-
         gtag('config', 'G-6N0HW0Q21M');
     </script>
-
-    {{-- Primary Meta Tags --}}
-    <title>{{ $seo['title'] ?? config('site.site_name_ar') }}</title>
-    <meta name="description" content="{{ $seo['description'] ?? 'شراء عفش واثاث مستعمل فورا في جدة' }}">
-    <meta name="keywords"
-        content="{{ $seo['keywords'] ?? 'شراء اثاث مستعمل جدة, جدة, شراء مكيفات, شراء اجهزة كهربائية' }}">
-    <link rel="canonical" href="{{ $seo['canonical'] ?? url()->current() }}">
-    <link rel="icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-    {{-- Open Graph / Facebook --}}
-    <meta property="og:locale" content="ar_SA">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="{{ config('site.site_name_ar') }}">
-    <meta property="og:title" content="{{ $seo['title'] ?? config('site.site_name_ar') }}">
-    <meta property="og:description" content="{{ $seo['description'] ?? '' }}">
-    <meta property="og:url" content="{{ url()->current() }}">
-    @if (isset($seo['image']))
-        <meta property="og:image" content="{{ $seo['image'] }}">
-    @endif
-
-    {{-- Twitter Card --}}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $seo['title'] ?? config('site.site_name_ar') }}">
-    <meta name="twitter:description" content="{{ $seo['description'] ?? '' }}">
-    @if (isset($seo['image']))
-        <meta name="twitter:image" content="{{ $seo['image'] }}">
-    @endif
-
-    {{-- Preconnect for performance --}}
-
-
-
 
     {{-- Styles --}}
     <link rel="preload" href="{{ asset('assets/fonts/tajawal-v12-arabic_latin-regular.woff2') }}" as="font"
@@ -69,18 +70,29 @@
     <link rel="apple-touch-icon" href="{{ asset('assets/img/logo.svg') }}">
     <link rel="shortcut icon" href="{{ asset('assets/img/logo.svg') }}">
 
+    {{-- LocalBusiness Schema (جدة) --}}
     <script type="application/ld+json">
-        {!! json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'Organization',
-            'url' => url('/'),
-            'logo' => asset('assets/img/logo.svg')
-        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
+    {!! json_encode([
+      '@context' => 'https://schema.org',
+      '@type' => 'LocalBusiness',
+      'name' => 'شراء اثاث مستعمل بجدة',
+      'url' => url('/'),
+      'image' => asset('assets/img/og-image.jpg'),
+      'telephone' => '+966544707442',
+      'address' => [
+          '@type' => 'PostalAddress',
+          'addressLocality' => 'Jeddah',
+          'addressCountry' => 'SA'
+      ],
+      'areaServed' => [
+          '@type' => 'City',
+          'name' => 'Jeddah'
+      ]
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
     </script>
 
-    {{-- Schema.org Markup --}}
+    {{-- Additional Schema --}}
     @stack('schema')
-
     @stack('styles')
 </head>
 

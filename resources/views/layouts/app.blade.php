@@ -8,11 +8,11 @@
     <meta name="theme-color" content="#0b6e4f">
 
     @php
-        $defaultTitle = 'شراء اثاث مستعمل بجدة | شراء عفش | مطابخ | سكراب بأعلى سعر';
+        $defaultTitle = 'شراء اثاث مستعمل بجدة بأعلى سعر | نشتري العفش والمطابخ والمكيفات والسكراب';
         $defaultDesc =
             'شراء اثاث مستعمل بجدة وشراء العفش المستعمل وشراء المطابخ المستعملة وشراء سكراب بأعلى الأسعار. نجيك لموقعك فوراً، معاينة دقيقة، استلام سريع ودفع نقدي مباشر.';
-        $title = $seo['title'] ?? $defaultTitle;
-        $desc = $seo['description'] ?? $defaultDesc;
+        $title = $defaultTitle; //$seo['title'] ??
+        $desc = $defaultDesc; //$seo['description'] ??
         $image = $seo['image'] ?? asset('assets/img/og-image.jpg');
         $url = $seo['canonical'] ?? url()->current();
     @endphp
@@ -24,6 +24,8 @@
 
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
     <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <meta name="keywords"
+        content="شراء اثاث مستعمل بجدة, شراء عفش مستعمل جدة, شراء مطابخ مستعملة جدة, شراء مكيفات مستعملة جدة, شراء سكراب جدة, شراء معدات مطاعم مستعملة جدة">
 
     {{-- Open Graph / WhatsApp / Facebook --}}
     <meta property="og:locale" content="ar_SA">
@@ -36,6 +38,8 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:alt" content="شراء اثاث مستعمل بجدة">
+
 
     {{-- Twitter Card --}}
     <meta name="twitter:card" content="summary_large_image">

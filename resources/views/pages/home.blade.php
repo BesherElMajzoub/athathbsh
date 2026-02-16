@@ -24,7 +24,7 @@
         <div class="container hero-grid">
             <div class="hero-copy">
                 <span class="eyebrow">شراء اثاث مستعمل في جدة</span>
-                <h1>شراء أثاث مستعمل في {{ $business['city'] }}</h1>
+                <h1>شراء أثاث مستعمل {{ $business['city'] }}</h1>
                 <p class="lead">
                     إذا كنت تبحث عن جهة تشتري الأثاث المستعمل في {{ $business['city'] }} بسرعة وبسعر مناسب،
                     نحن نصل لموقعك للتقييم والشراء مع نقل وتحميل بعد الاتفاق.

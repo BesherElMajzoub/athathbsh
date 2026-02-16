@@ -23,7 +23,7 @@
     <section class="hero">
         <div class="container hero-grid">
             <div class="hero-copy">
-                <span class="eyebrow">شراء أثاث مستعمل</span>
+                <span class="eyebrow">شراء الاثاث المستعمل المستعمل</span>
                 <h1>شراء أثاث مستعمل في {{ $business['city'] }}</h1>
                 <p class="lead">
                     إذا كنت تبحث عن جهة تشتري الأثاث المستعمل في {{ $business['city'] }} بسرعة وبسعر مناسب،

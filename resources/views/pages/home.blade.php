@@ -23,7 +23,7 @@
     <section class="hero">
         <div class="container hero-grid">
             <div class="hero-copy">
-                <span class="eyebrow">شراء الاثاث المستعمل المستعمل</span>
+                <span class="eyebrow">شراء اثاث مستعمل في جدة</span>
                 <h1>شراء أثاث مستعمل في {{ $business['city'] }}</h1>
                 <p class="lead">
                     إذا كنت تبحث عن جهة تشتري الأثاث المستعمل في {{ $business['city'] }} بسرعة وبسعر مناسب،
@@ -44,8 +44,10 @@
                     <div class="panel-title">لماذا تختارنا؟</div>
                     <ul class="panel-list">
                         <li>خبرة {{ $business['years_experience'] ?? '10' }}+ سنة في شراء الاثاث المستعمل بجدة</li>
-                        <li>استجابة سريعة لشراء الاثاث المستعمل داخل جدة {{ $business['city'] }}</li>
-                        <li>تغطية أحياء {{ $business['city'] }} بشكل واسع</li>
+                        <li>استجابة سريعة لشراء الاثاث المستعمل داخل جدة </li>
+                        <li>
+                            <h2>تغطية أحياء جدة بشكل واسع</h2>
+                        </li>
                         <li>تسعير واضح حسب الحالة والكمية</li>
                     </ul>
                     <a class="btn btn-ghost btn-sm" href="{{ route('areas.north') }}">شاهد مناطق الخدمة</a>

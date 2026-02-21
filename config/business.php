@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'brand_name' => env('BUSINESS_BRAND_NAME', 'شراء أثاث مستعمل بجدة'),
+    'brand_name' => env('BUSINESS_BRAND_NAME', 'شراء أثاث مستعمل في جدة'),
     'city' => env('BUSINESS_CITY', 'جدة'),
     'years_experience' => env('BUSINESS_YEARS_EXPERIENCE', '10'),
 
